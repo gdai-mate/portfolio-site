@@ -83,6 +83,8 @@ body {
 
 @media (max-width: 768px) {
     .diagonal-bg {
+        position: absolute;
+        height: 100%;
         background: linear-gradient(
             161deg,
             var(--white) 0%,

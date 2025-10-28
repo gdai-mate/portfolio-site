@@ -140,7 +140,8 @@ main {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     width: 100%;
     padding: 1rem 0.75rem 0.5rem;
     font-size: 1rem;
@@ -154,22 +155,46 @@ main {
 }
 
 .glass-form.on-white .form-group input,
-.glass-form.on-white .form-group textarea {
+.glass-form.on-white .form-group textarea,
+.glass-form.on-white .form-group select {
     color: var(--black);
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
     border-color: rgba(255, 255, 255, 0.4);
     background: rgba(255, 255, 255, 0.12);
 }
 
 .glass-form.on-white .form-group input:focus,
-.glass-form.on-white .form-group textarea:focus {
+.glass-form.on-white .form-group textarea:focus,
+.glass-form.on-white .form-group select:focus {
     border-color: rgba(0, 0, 0, 0.3);
     background: rgba(255, 255, 255, 0.12);
+}
+
+/* Select dropdown specific styling */
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(255,255,255,0.6)' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2.5rem;
+}
+
+.glass-form.on-white .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(0,0,0,0.6)' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+}
+
+.form-group select option {
+    background: var(--black);
+    color: var(--white);
 }
 
 .form-group label {
@@ -189,7 +214,9 @@ main {
 .form-group input:focus + label,
 .form-group input:valid + label,
 .form-group textarea:focus + label,
-.form-group textarea:valid + label {
+.form-group textarea:valid + label,
+.form-group select:focus + label,
+.form-group select:valid + label {
     top: 0.25rem;
     font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.8);
@@ -198,7 +225,9 @@ main {
 .glass-form.on-white .form-group input:focus + label,
 .glass-form.on-white .form-group input:valid + label,
 .glass-form.on-white .form-group textarea:focus + label,
-.glass-form.on-white .form-group textarea:valid + label {
+.glass-form.on-white .form-group textarea:valid + label,
+.glass-form.on-white .form-group select:focus + label,
+.glass-form.on-white .form-group select:valid + label {
     color: rgba(0, 0, 0, 0.8);
 }
 

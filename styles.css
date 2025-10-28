@@ -320,8 +320,8 @@ main {
     padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: 600;
-    color: var(--black);
-    background: var(--white);
+    color: var(--white);
+    background: var(--black);
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -330,9 +330,18 @@ main {
     overflow: hidden;
 }
 
+.glass-form.on-white .submit-btn {
+    color: var(--white);
+    background: var(--black);
+}
+
 .submit-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.glass-form.on-white .submit-btn:hover:not(:disabled) {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .submit-btn:active:not(:disabled) {

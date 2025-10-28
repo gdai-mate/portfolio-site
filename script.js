@@ -15,24 +15,18 @@ function handleScroll() {
     // Check if form is on white or black background
     if (glassForm) {
         const formRect = glassForm.getBoundingClientRect();
-        const formTop = formRect.top;
-        const formBottom = formRect.bottom;
-        const formMiddle = (formTop + formBottom) / 2;
+        const formMiddle = (formRect.top + formRect.bottom) / 2;
         const viewportHeight = window.innerHeight;
 
-        // The diagonal-bg is 300vh tall, starting at 32% white
-        // Calculate where the diagonal crosses at the form's horizontal position
-        // The diagonal at 161deg crosses roughly at viewport center initially
-        // As we scroll and translate by offset, the diagonal moves
+        // The diagonal-bg is 300vh tall with gradient transition at 32%
+        // That's at 32% of 300vh = 96vh from the element's top
+        // The element starts at viewport top and is translated by offset
+        // So the diagonal line is at: 96vh + offset (in viewport coordinates)
+        const diagonalLinePosition = viewportHeight * 0.96 + offset;
 
-        // Approximate diagonal crossing point in viewport
-        // Starting position is around 60vh (0.6 * viewport height)
-        // As we scroll down, offset is negative, so diagonal moves up
-        const diagonalCrossing = viewportHeight * 0.6 + offset;
-
-        // If the form's middle is below the diagonal line, it's on white
-        // If above, it's on black
-        if (formMiddle > diagonalCrossing) {
+        // If form middle is below the diagonal line, it's on white background
+        // If above the diagonal line, it's on black background
+        if (formMiddle > diagonalLinePosition) {
             glassForm.classList.add('on-white');
         } else {
             glassForm.classList.remove('on-white');

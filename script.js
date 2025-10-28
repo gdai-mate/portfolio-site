@@ -3,9 +3,9 @@ const diagonalBg = document.querySelector('.diagonal-bg');
 
 function handleScroll() {
     const scrollY = window.scrollY;
-    // Scroll 1.5x faster than normal scroll
+    // Scroll 1.5x faster than normal scroll (negative to move black UP)
     const parallaxSpeed = 1.5;
-    const offset = scrollY * parallaxSpeed;
+    const offset = -scrollY * parallaxSpeed;
 
     if (diagonalBg) {
         diagonalBg.style.transform = `translateY(${offset}px)`;

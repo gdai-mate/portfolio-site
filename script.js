@@ -2,17 +2,12 @@
 const diagonalBg = document.querySelector('.diagonal-bg');
 const glassForm = document.querySelector('.glass-form');
 
-// Detect mobile devices
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth <= 768;
-
 function handleScroll() {
     const scrollY = window.scrollY;
+    const parallaxSpeed = 1.5;
+    const offset = -scrollY * parallaxSpeed;
 
-    // Only apply parallax on desktop for smooth performance
-    if (!isMobile && diagonalBg) {
-        // Scroll 1.5x faster than normal scroll (negative to move black UP)
-        const parallaxSpeed = 1.5;
-        const offset = -scrollY * parallaxSpeed;
+    if (diagonalBg) {
         diagonalBg.style.transform = `translateY(${offset}px)`;
     }
 
@@ -27,7 +22,6 @@ function handleScroll() {
         // With the element at top and translated by offset, the crossing point moves
         // At the center of viewport horizontally, the diagonal crosses at:
         const initialCrossing = viewportHeight * 0.5; // Start at ~50vh
-        const offset = isMobile ? 0 : -scrollY * 1.5;
         const diagonalLinePosition = initialCrossing + offset;
 
         // If form middle is below the diagonal line, it's on white background

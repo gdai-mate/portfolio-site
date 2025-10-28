@@ -4,7 +4,8 @@ const glassForm = document.querySelector('.glass-form');
 
 function handleScroll() {
     const scrollY = window.scrollY;
-    const parallaxSpeed = 1.5;
+    const isMobile = window.innerWidth <= 768;
+    const parallaxSpeed = isMobile ? 2.0 : 1.5;
     const offset = -scrollY * parallaxSpeed;
 
     if (diagonalBg) {
@@ -14,18 +15,55 @@ function handleScroll() {
     // Check each form field individually as diagonal crosses over it
     if (glassForm) {
         const viewportHeight = window.innerHeight;
-        const diagonalLineY = viewportHeight * 0.5 - scrollY * 0.5; // Approximate diagonal position
+        // The diagonal background is 300vh tall, starts at 32% (or 30% on mobile)
+        // With parallax at 2.0x speed on mobile (1.5x on desktop), it moves faster
+        // The diagonal line is at X% of the background element
+        const gradientPercent = isMobile ? 0.30 : 0.32;
+
+        // Background height is 300vh, diagonal is at X% of that
+        const bgHeightPx = viewportHeight * 3;
+        const diagonalOffsetInBg = bgHeightPx * gradientPercent;
+
+        // With parallax, the diagonal moves down by offset amount
+        const diagonalLineY = diagonalOffsetInBg + offset;
+
+        console.log('Diagonal line Y:', diagonalLineY, 'ScrollY:', scrollY, 'Offset:', offset);
 
         // Check each form group individually
         const formGroups = glassForm.querySelectorAll('.form-group');
-        formGroups.forEach(group => {
+        console.log('Found form groups:', formGroups.length);
+
+        formGroups.forEach((group, index) => {
             const rect = group.getBoundingClientRect();
             const groupMiddle = rect.top + (rect.height / 2);
 
-            if (groupMiddle > diagonalLineY) {
-                group.classList.add('on-white');
+            const input = group.querySelector('input, textarea, select');
+            const label = group.querySelector('label');
+
+            console.log(`Group ${index}: middle=${groupMiddle}, diagonal=${diagonalLineY}, input found=${!!input}, label found=${!!label}`);
+
+            // If group is ABOVE the diagonal line (smaller Y), it's in white section = black text
+            // If group is BELOW the diagonal line (bigger Y), it's in black section = white text
+            if (groupMiddle < diagonalLineY) {
+                // On white background - use black text
+                console.log(`Group ${index}: Setting BLACK text (on white)`);
+                if (input) {
+                    input.style.setProperty('color', '#0a0a0a', 'important');
+                    console.log(`Input color set to:`, input.style.color);
+                }
+                if (label) {
+                    label.style.setProperty('color', 'rgba(0, 0, 0, 0.6)', 'important');
+                }
             } else {
-                group.classList.remove('on-white');
+                // On black background - use white text
+                console.log(`Group ${index}: Setting WHITE text (on black)`);
+                if (input) {
+                    input.style.setProperty('color', '#fafafa', 'important');
+                    console.log(`Input color set to:`, input.style.color);
+                }
+                if (label) {
+                    label.style.setProperty('color', 'rgba(255, 255, 255, 0.6)', 'important');
+                }
             }
         });
 
@@ -35,10 +73,14 @@ function handleScroll() {
             const btnRect = submitBtn.getBoundingClientRect();
             const btnMiddle = btnRect.top + (btnRect.height / 2);
 
-            if (btnMiddle > diagonalLineY) {
-                submitBtn.classList.add('on-white');
+            if (btnMiddle < diagonalLineY) {
+                // On white - black button
+                submitBtn.style.color = '#fafafa';
+                submitBtn.style.background = '#0a0a0a';
             } else {
-                submitBtn.classList.remove('on-white');
+                // On black - keep black button with white text
+                submitBtn.style.color = '#fafafa';
+                submitBtn.style.background = '#0a0a0a';
             }
         }
     }

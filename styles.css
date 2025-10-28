@@ -102,7 +102,7 @@ body::after {
     );
     z-index: -1;
     will-change: transform;
-    transition: transform 0.1s linear;
+    transform: translateZ(0);
 }
 
 @media (max-width: 768px) {
@@ -110,8 +110,8 @@ body::after {
         background: linear-gradient(
             161deg,
             var(--white) 0%,
-            var(--white) 28%,
-            var(--black) 28%,
+            var(--white) 30%,
+            var(--black) 30%,
             var(--black) 100%
         );
     }
@@ -219,7 +219,7 @@ main {
 .form-group.on-white input,
 .form-group.on-white textarea,
 .form-group.on-white select {
-    color: var(--black);
+    color: var(--black) !important;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -271,7 +271,7 @@ main {
 
 .glass-form.on-white .form-group label,
 .form-group.on-white label {
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.6) !important;
 }
 
 .form-group input:focus + label,
@@ -297,7 +297,7 @@ main {
 .form-group.on-white textarea:valid + label,
 .form-group.on-white select:focus + label,
 .form-group.on-white select:valid + label {
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0, 0.8) !important;
 }
 
 /* Budget section removed */
@@ -320,8 +320,8 @@ main {
 
 .glass-form.on-white .submit-btn,
 .submit-btn.on-white {
-    color: var(--white);
-    background: var(--black);
+    color: var(--white) !important;
+    background: var(--black) !important;
 }
 
 .submit-btn:hover:not(:disabled) {

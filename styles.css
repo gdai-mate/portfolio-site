@@ -33,14 +33,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     color: var(--black);
-    background: linear-gradient(
-        161deg,
-        var(--white) 0%,
-        var(--white) 32%,
-        var(--black) 32%,
-        var(--black) 100%
-    );
-    background-attachment: scroll;
+    background: var(--black);
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
@@ -69,8 +62,28 @@ body {
     }
 }
 
+/* Diagonal Background */
+.diagonal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300vh;
+    background: linear-gradient(
+        161deg,
+        var(--white) 0%,
+        var(--white) 32%,
+        var(--black) 32%,
+        var(--black) 100%
+    );
+    z-index: -1;
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
 main {
     position: relative;
+    z-index: 1;
 }
 
 /* Hero Section */

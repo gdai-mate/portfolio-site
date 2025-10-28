@@ -11,20 +11,35 @@ function handleScroll() {
         diagonalBg.style.transform = `translateY(${offset}px)`;
     }
 
-    // Check if form is on white or black background
+    // Check each form field individually as diagonal crosses over it
     if (glassForm) {
-        const formRect = glassForm.getBoundingClientRect();
-        const formTop = formRect.top;
         const viewportHeight = window.innerHeight;
+        const diagonalLineY = viewportHeight * 0.5 - scrollY * 0.5; // Approximate diagonal position
 
-        // Simple threshold: if form top is in upper half of viewport, likely on white
-        // if form top is in lower half or below, likely on black
-        const threshold = viewportHeight * 0.4;
+        // Check each form group individually
+        const formGroups = glassForm.querySelectorAll('.form-group');
+        formGroups.forEach(group => {
+            const rect = group.getBoundingClientRect();
+            const groupMiddle = rect.top + (rect.height / 2);
 
-        if (formTop > threshold) {
-            glassForm.classList.add('on-white');
-        } else {
-            glassForm.classList.remove('on-white');
+            if (groupMiddle > diagonalLineY) {
+                group.classList.add('on-white');
+            } else {
+                group.classList.remove('on-white');
+            }
+        });
+
+        // Check submit button too
+        const submitBtn = glassForm.querySelector('.submit-btn');
+        if (submitBtn) {
+            const btnRect = submitBtn.getBoundingClientRect();
+            const btnMiddle = btnRect.top + (btnRect.height / 2);
+
+            if (btnMiddle > diagonalLineY) {
+                submitBtn.classList.add('on-white');
+            } else {
+                submitBtn.classList.remove('on-white');
+            }
         }
     }
 }

@@ -33,10 +33,35 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     color: var(--black);
-    background: var(--black);
+    background: var(--white);
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
+}
+
+/* Profile Photo */
+.profile-photo {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    opacity: 0;
+    animation: fadeInProfile 0.8s ease-out 4.5s forwards;
+}
+
+@media (max-width: 768px) {
+    .profile-photo {
+        width: 60px;
+        height: 60px;
+        top: 1.5rem;
+        left: 1.5rem;
+    }
 }
 
 /* Diagonal Background with Parallax */
@@ -56,6 +81,8 @@ body {
     z-index: -1;
     will-change: transform;
     transition: transform 0.1s linear;
+    opacity: 0;
+    animation: slideInDiagonal 1.5s ease-out 1s forwards;
 }
 
 main {
@@ -81,6 +108,8 @@ main {
     letter-spacing: -0.02em;
     margin-bottom: 1rem;
     line-height: 1.1;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0s forwards;
 }
 
 .hero .tagline {
@@ -88,13 +117,15 @@ main {
     font-weight: 500;
     letter-spacing: -0.01em;
     margin-bottom: 1rem;
-    opacity: 0.9;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 2.5s forwards;
 }
 
 .hero .availability {
     font-size: clamp(1rem, 2vw, 1.125rem);
     max-width: 600px;
-    opacity: 0.7;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 3.5s forwards;
 }
 
 /* Form Section */
@@ -104,6 +135,9 @@ main {
     align-items: center;
     padding: 4rem 2rem;
     min-height: 60vh;
+    opacity: 0;
+    transform: translateY(60px);
+    animation: slideUp 1s ease-out 4.5s forwards;
 }
 
 /* Glassmorphism Form */
@@ -374,6 +408,49 @@ main {
 *:focus-visible {
     outline: 2px solid rgba(255, 255, 255, 0.6);
     outline-offset: 2px;
+}
+
+/* Entrance Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInDiagonal {
+    from {
+        opacity: 0;
+        clip-path: polygon(100% 100%, 100% 100%, 100% 100%);
+    }
+    to {
+        opacity: 1;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInProfile {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* Responsive */

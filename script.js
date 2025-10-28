@@ -1,5 +1,6 @@
 // Parallax scroll effect for diagonal background
 const diagonalBg = document.querySelector('.diagonal-bg');
+const glassForm = document.querySelector('.glass-form');
 
 function handleScroll() {
     const scrollY = window.scrollY;
@@ -9,6 +10,26 @@ function handleScroll() {
 
     if (diagonalBg) {
         diagonalBg.style.transform = `translateY(${offset}px)`;
+    }
+
+    // Check if form is on white or black background
+    if (glassForm) {
+        const formRect = glassForm.getBoundingClientRect();
+        const formCenter = formRect.top + formRect.height / 2;
+        const viewportHeight = window.innerHeight;
+
+        // Calculate the diagonal line position
+        // The diagonal starts at top and moves up as we scroll
+        // At scroll=0, diagonal is at ~50vh, as we scroll it moves up
+        const diagonalPosition = viewportHeight * 0.5 + offset;
+
+        // If form center is above the diagonal line, it's on black
+        // If below, it's on white
+        if (formCenter < diagonalPosition) {
+            glassForm.classList.remove('on-white');
+        } else {
+            glassForm.classList.add('on-white');
+        }
     }
 }
 
@@ -23,6 +44,9 @@ window.addEventListener('scroll', () => {
         ticking = true;
     }
 });
+
+// Run on load
+handleScroll();
 
 // Form handling
 const form = document.getElementById('enquiry-form');

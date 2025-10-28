@@ -18,11 +18,14 @@ function handleScroll() {
         const formMiddle = (formRect.top + formRect.bottom) / 2;
         const viewportHeight = window.innerHeight;
 
-        // The diagonal-bg is 300vh tall with gradient transition at 32%
-        // That's at 32% of 300vh = 96vh from the element's top
-        // The element starts at viewport top and is translated by offset
-        // So the diagonal line is at: 96vh + offset (in viewport coordinates)
-        const diagonalLinePosition = viewportHeight * 0.96 + offset;
+        // The diagonal crosses at different points, but we can approximate
+        // The gradient is at 32% of 300vh tall element = 0.96vh
+        // With the element at top and translated by offset, the crossing point moves
+        // At the center of viewport horizontally, the diagonal crosses at:
+        const initialCrossing = viewportHeight * 0.5; // Start at ~50vh
+        const diagonalLinePosition = initialCrossing + offset;
+
+        console.log('Form middle:', formMiddle, 'Diagonal at:', diagonalLinePosition, 'On white?', formMiddle > diagonalLinePosition);
 
         // If form middle is below the diagonal line, it's on white background
         // If above the diagonal line, it's on black background

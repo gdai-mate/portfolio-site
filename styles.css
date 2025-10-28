@@ -48,7 +48,7 @@ body {
     height: 100px;
     object-fit: cover;
     object-position: center 30%;
-    clip-path: polygon(35% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 12%);
+    clip-path: polygon(45% 0%, 100% 0%, 100% 85%, 60% 100%, 0% 100%, 0% 15%);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     z-index: 100;
 }

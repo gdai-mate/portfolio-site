@@ -81,6 +81,18 @@ body {
     transition: transform 0.1s linear;
 }
 
+@media (max-width: 768px) {
+    .diagonal-bg {
+        background: linear-gradient(
+            161deg,
+            var(--white) 0%,
+            var(--white) 22%,
+            var(--black) 22%,
+            var(--black) 100%
+        );
+    }
+}
+
 main {
     position: relative;
     z-index: 1;

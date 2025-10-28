@@ -81,7 +81,7 @@ body::after {
     .profile-photo-img {
         width: 150%;
         height: 150%;
-        object-position: center 15%;
+        object-position: center 10%;
         transform: translate(-16.67%, -16.67%);
     }
 }

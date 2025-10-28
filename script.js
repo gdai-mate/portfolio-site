@@ -14,24 +14,14 @@ function handleScroll() {
     // Check if form is on white or black background
     if (glassForm) {
         const formRect = glassForm.getBoundingClientRect();
-        const formMiddle = (formRect.top + formRect.bottom) / 2;
+        const formTop = formRect.top;
         const viewportHeight = window.innerHeight;
 
-        // Detect mobile for gradient percentage
-        const isMobile = window.innerWidth <= 768;
-        const gradientPercent = isMobile ? 0.28 : 0.32;
+        // Simple threshold: if form top is in upper half of viewport, likely on white
+        // if form top is in lower half or below, likely on black
+        const threshold = viewportHeight * 0.4;
 
-        // The diagonal crosses at different points based on screen size
-        // The gradient is at X% of 300vh tall element
-        // With the element at top and translated by offset, the crossing point moves
-        // At the center of viewport horizontally, the diagonal crosses at:
-        const bgHeight = viewportHeight * 3; // 300vh
-        const diagonalCrossingInBg = bgHeight * gradientPercent;
-        const diagonalLinePosition = diagonalCrossingInBg + offset;
-
-        // If form middle is below the diagonal line, it's on white background
-        // If above the diagonal line, it's on black background
-        if (formMiddle > diagonalLinePosition) {
+        if (formTop > threshold) {
             glassForm.classList.add('on-white');
         } else {
             glassForm.classList.remove('on-white');

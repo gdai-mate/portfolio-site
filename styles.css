@@ -226,7 +226,7 @@ main {
 }
 
 .radio-label {
-    position: static;
+    position: relative;
     display: block;
     width: 100%;
     cursor: pointer;
@@ -242,7 +242,8 @@ main {
     margin-bottom: 0;
 }
 
-.radio-label > * {
+.radio-custom,
+.radio-text {
     display: inline-block;
     vertical-align: middle;
 }
@@ -264,8 +265,7 @@ main {
 .radio-label input[type="radio"] {
     position: absolute;
     opacity: 0;
-    width: 0;
-    height: 0;
+    pointer-events: none;
 }
 
 .radio-custom {

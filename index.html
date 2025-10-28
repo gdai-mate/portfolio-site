@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simple. Custom. Effective. Website building services - taking on 3 builds this quarter.">
+    <title>Website Building</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="diagonal-bg"></div>
+
+    <main>
+        <section class="hero">
+            <h1>Website Building</h1>
+            <p class="tagline">Simple. Custom. Effective.</p>
+            <p class="availability">Taking on 3 builds this quarter — enquire below to see if we're a good fit</p>
+        </section>
+
+        <section class="form-section">
+            <form id="enquiry-form" class="glass-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" required>
+                    <label for="name">Name</label>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email</label>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone" required>
+                    <label for="phone">Phone Number</label>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="industry" name="industry" required>
+                    <label for="industry">Industry</label>
+                </div>
+
+                <div class="form-group radio-group">
+                    <label class="group-label">Budget</label>
+                    <div class="radio-options">
+                        <label class="radio-label">
+                            <input type="radio" name="budget" value="$1-3k — simple & effective" required>
+                            <span class="radio-custom"></span>
+                            <span class="radio-text">$1-3k — simple &amp; effective</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="budget" value="$3-5k — custom functionality" required>
+                            <span class="radio-custom"></span>
+                            <span class="radio-text">$3-5k — custom functionality</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="budget" value="$5k+ — you imagine it, I build it" required>
+                            <span class="radio-custom"></span>
+                            <span class="radio-text">$5k+ — you imagine it, I build it</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="budget" value="Let's discuss" required>
+                            <span class="radio-custom"></span>
+                            <span class="radio-text">Let's discuss</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    <label for="message">Message</label>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Enquire</span>
+                    <span class="btn-loader"></span>
+                </button>
+
+                <div class="form-message" role="alert"></div>
+            </form>
+        </section>
+
+        <section class="examples">
+            <h2>See examples</h2>
+            <nav class="example-links">
+                <a href="https://hum-social.com" target="_blank" rel="noopener noreferrer">hum-social.com</a>
+                <a href="https://deepclean.au" target="_blank" rel="noopener noreferrer">deepclean.au</a>
+                <a href="https://gdaimate.com" target="_blank" rel="noopener noreferrer">gdaimate.com</a>
+            </nav>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

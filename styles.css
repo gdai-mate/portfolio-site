@@ -88,8 +88,8 @@ body {
         background: linear-gradient(
             161deg,
             var(--white) 0%,
-            var(--white) 22%,
-            var(--black) 22%,
+            var(--white) 40%,
+            var(--black) 40%,
             var(--black) 100%
         );
     }

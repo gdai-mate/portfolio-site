@@ -70,7 +70,8 @@ body::after {
         height: 50px;
         top: 1.5rem;
         left: 1.5rem;
-        object-position: center 25%;
+        object-position: center 15%;
+        object-fit: cover;
     }
 }
 

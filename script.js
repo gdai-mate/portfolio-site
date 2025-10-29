@@ -27,11 +27,8 @@ function handleScroll() {
         // With parallax, the diagonal moves down by offset amount
         const diagonalLineY = diagonalOffsetInBg + offset;
 
-        console.log('Diagonal line Y:', diagonalLineY, 'ScrollY:', scrollY, 'Offset:', offset);
-
         // Check each form group individually
         const formGroups = glassForm.querySelectorAll('.form-group');
-        console.log('Found form groups:', formGroups.length);
 
         formGroups.forEach((group, index) => {
             const rect = group.getBoundingClientRect();
@@ -40,26 +37,20 @@ function handleScroll() {
             const input = group.querySelector('input, textarea, select');
             const label = group.querySelector('label');
 
-            console.log(`Group ${index}: middle=${groupMiddle}, diagonal=${diagonalLineY}, input found=${!!input}, label found=${!!label}`);
-
             // If group is ABOVE the diagonal line (smaller Y), it's in white section = black text
             // If group is BELOW the diagonal line (bigger Y), it's in black section = white text
             if (groupMiddle < diagonalLineY) {
                 // On white background - use black text
-                console.log(`Group ${index}: Setting BLACK text (on white)`);
                 if (input) {
                     input.style.setProperty('color', '#0a0a0a', 'important');
-                    console.log(`Input color set to:`, input.style.color);
                 }
                 if (label) {
                     label.style.setProperty('color', 'rgba(0, 0, 0, 0.6)', 'important');
                 }
             } else {
                 // On black background - use white text
-                console.log(`Group ${index}: Setting WHITE text (on black)`);
                 if (input) {
                     input.style.setProperty('color', '#fafafa', 'important');
-                    console.log(`Input color set to:`, input.style.color);
                 }
                 if (label) {
                     label.style.setProperty('color', 'rgba(255, 255, 255, 0.6)', 'important');
@@ -103,8 +94,15 @@ handleScroll();
 
 // Form handling
 const form = document.getElementById('enquiry-form');
-const submitBtn = form.querySelector('.submit-btn');
-const formMessage = form.querySelector('.form-message');
+
+if (!form) {
+    console.error('Form not found!');
+} else {
+    console.log('Form found, setting up event listener');
+}
+
+const submitBtn = form ? form.querySelector('.submit-btn') : null;
+const formMessage = form ? form.querySelector('.form-message') : null;
 
 // Formspree endpoint
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mblpgzpk';
@@ -165,8 +163,10 @@ async function submitForm(formData) {
 }
 
 // Form submit handler
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+if (form) {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        console.log('Form submitted!');
 
     // Get form data
     const formData = new FormData(form);
@@ -196,7 +196,8 @@ form.addEventListener('submit', async (e) => {
     } else {
         showMessage('error', 'Something went wrong. Please try again or email directly at info@gdaimate.com');
     }
-});
+    });
+}
 
 // Add smooth scroll behavior to example links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

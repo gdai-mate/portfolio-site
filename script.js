@@ -94,18 +94,11 @@ handleScroll();
 
 // Form handling
 const form = document.getElementById('enquiry-form');
-
-if (!form) {
-    console.error('Form not found!');
-} else {
-    console.log('Form found, setting up event listener');
-}
-
 const submitBtn = form ? form.querySelector('.submit-btn') : null;
 const formMessage = form ? form.querySelector('.form-message') : null;
 
-// Formspree endpoint
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mblpgzpk';
+// Web3Forms endpoint
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 
 // Form validation
 function validateForm(formData) {
@@ -131,6 +124,7 @@ function validateForm(formData) {
 function showMessage(type, text) {
     formMessage.className = `form-message ${type}`;
     formMessage.textContent = text;
+    formMessage.style.display = 'block';
 
     // Auto-hide after 5 seconds
     setTimeout(() => {
@@ -138,26 +132,30 @@ function showMessage(type, text) {
     }, 5000);
 }
 
-// Submit form to Formspree
+// Submit form to Web3Forms
 async function submitForm(formData) {
     try {
-        const response = await fetch(FORMSPREE_ENDPOINT, {
+        // Convert FormData to JSON
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        const response = await fetch(WEB3FORMS_ENDPOINT, {
             method: 'POST',
-            body: formData,
             headers: {
+                'Content-Type': 'application/json',
                 'Accept': 'application/json'
-            }
+            },
+            body: json
         });
 
-        if (response.ok) {
-            return { success: true };
+        const result = await response.json();
+
+        if (response.status === 200) {
+            return { success: true, message: result.message };
         } else {
-            const errorData = await response.json().catch(() => ({}));
-            console.error('Formspree error:', errorData);
-            return { success: false, error: errorData.error || 'Submission failed' };
+            return { success: false, error: result.message || 'Submission failed' };
         }
     } catch (error) {
-        console.error('Error submitting form:', error);
         return { success: false, error: error.message };
     }
 }
@@ -166,15 +164,12 @@ async function submitForm(formData) {
 if (form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        console.log('Form submitted!');
 
         // Get form data
         const formData = new FormData(form);
-        console.log('FormData created');
 
         // Validate
         const validation = validateForm(formData);
-        console.log('Validation result:', validation);
         if (!validation.valid) {
             showMessage('error', validation.message);
             return;
@@ -184,22 +179,18 @@ if (form) {
         submitBtn.disabled = true;
         submitBtn.classList.add('loading');
         formMessage.style.display = 'none';
-        console.log('Loading state shown');
 
         // Submit form
         const result = await submitForm(formData);
-        console.log('Submit result:', result);
 
         // Remove loading state
         submitBtn.disabled = false;
         submitBtn.classList.remove('loading');
 
         if (result.success) {
-            console.log('Showing success message');
             showMessage('success', "Thanks — I'll be in touch within 24 hours");
             form.reset();
         } else {
-            console.log('Showing error message');
             showMessage('error', 'Something went wrong. Please try again or email directly at info@gdaimate.com');
         }
     });

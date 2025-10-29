@@ -168,34 +168,40 @@ if (form) {
         e.preventDefault();
         console.log('Form submitted!');
 
-    // Get form data
-    const formData = new FormData(form);
+        // Get form data
+        const formData = new FormData(form);
+        console.log('FormData created');
 
-    // Validate
-    const validation = validateForm(formData);
-    if (!validation.valid) {
-        showMessage('error', validation.message);
-        return;
-    }
+        // Validate
+        const validation = validateForm(formData);
+        console.log('Validation result:', validation);
+        if (!validation.valid) {
+            showMessage('error', validation.message);
+            return;
+        }
 
-    // Show loading state
-    submitBtn.disabled = true;
-    submitBtn.classList.add('loading');
-    formMessage.style.display = 'none';
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        formMessage.style.display = 'none';
+        console.log('Loading state shown');
 
-    // Submit form
-    const result = await submitForm(formData);
+        // Submit form
+        const result = await submitForm(formData);
+        console.log('Submit result:', result);
 
-    // Remove loading state
-    submitBtn.disabled = false;
-    submitBtn.classList.remove('loading');
+        // Remove loading state
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
 
-    if (result.success) {
-        showMessage('success', "Thanks — I'll be in touch within 24 hours");
-        form.reset();
-    } else {
-        showMessage('error', 'Something went wrong. Please try again or email directly at info@gdaimate.com');
-    }
+        if (result.success) {
+            console.log('Showing success message');
+            showMessage('success', "Thanks — I'll be in touch within 24 hours");
+            form.reset();
+        } else {
+            console.log('Showing error message');
+            showMessage('error', 'Something went wrong. Please try again or email directly at info@gdaimate.com');
+        }
     });
 }
 

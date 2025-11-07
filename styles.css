@@ -6,12 +6,25 @@
 }
 
 :root {
-    --white: #fafafa;
+    --white: #ffffff;
+    --off-white: #fafafa;
     --black: #0a0a0a;
-    --gray-light: #e5e5e5;
-    --gray-dark: #1a1a1a;
-    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --charcoal: #1a1a1a;
+    --navy: #1e3a5f;
+    --navy-light: #2c4f7c;
+    --accent: #3b5d87;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 html {
@@ -32,35 +45,31 @@ html {
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
-    color: var(--black);
-    background: var(--white);
+    color: var(--charcoal);
+    background: linear-gradient(to bottom, var(--white) 0%, var(--gray-50) 50%, var(--off-white) 100%);
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
 }
 
-body::after {
-    content: '';
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50vh;
-    background: var(--black);
-    z-index: -2;
-}
-
 /* Profile Photo */
 .profile-photo {
     position: fixed;
-    top: 2rem;
-    left: 2rem;
-    width: 100px;
-    height: 100px;
-    clip-path: polygon(43.6% 0%, 100% 0%, 100% 85%, 56.4% 100%, 0% 100%, 0% 15%);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    top: 2.5rem;
+    left: 2.5rem;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: var(--shadow-lg);
     z-index: 100;
     overflow: hidden;
+    border: 3px solid var(--white);
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-xl);
 }
 
 .profile-photo-img {
@@ -72,49 +81,17 @@ body::after {
 
 @media (max-width: 768px) {
     .profile-photo {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         top: 1.5rem;
         left: 1.5rem;
-    }
-
-    .profile-photo-img {
-        width: 150%;
-        height: 150%;
-        object-position: center 25%;
-        transform: translate(-16.67%, -16.67%);
+        border: 2px solid var(--white);
     }
 }
 
-/* Diagonal Background */
+/* Subtle Wave Background - Hidden but kept for structure */
 .diagonal-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 300vh;
-    background: linear-gradient(
-        161deg,
-        var(--white) 0%,
-        var(--white) 32%,
-        var(--black) 32%,
-        var(--black) 100%
-    );
-    z-index: -1;
-    will-change: transform;
-    transform: translateZ(0);
-}
-
-@media (max-width: 768px) {
-    .diagonal-bg {
-        background: linear-gradient(
-            161deg,
-            var(--white) 0%,
-            var(--white) 30%,
-            var(--black) 30%,
-            var(--black) 100%
-        );
-    }
+    display: none;
 }
 
 main {
@@ -124,36 +101,38 @@ main {
 
 /* Hero Section */
 .hero {
-    min-height: 60vh;
+    min-height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 4rem 2rem 2rem;
-    color: var(--black);
+    padding: 8rem 2rem 4rem;
 }
 
 .hero h1 {
-    font-size: clamp(2.5rem, 8vw, 5rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
     line-height: 1.1;
+    color: var(--charcoal);
 }
 
 .hero .tagline {
-    font-size: clamp(1.25rem, 3vw, 1.75rem);
-    font-weight: 500;
+    font-size: clamp(1.375rem, 3vw, 2rem);
+    font-weight: 400;
     letter-spacing: -0.01em;
-    margin-bottom: 1rem;
-    opacity: 0.9;
+    margin-bottom: 1.5rem;
+    color: var(--gray-600);
 }
 
 .hero .availability {
-    font-size: clamp(1rem, 2vw, 1.125rem);
-    max-width: 600px;
-    opacity: 0.7;
+    font-size: clamp(1.0625rem, 2vw, 1.1875rem);
+    max-width: 640px;
+    color: var(--gray-600);
+    font-weight: 400;
+    line-height: 1.7;
 }
 
 /* Form Section */
@@ -161,56 +140,52 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 4rem 2rem;
-    min-height: 60vh;
+    padding: 6rem 2rem;
+    min-height: auto;
 }
 
-/* Glassmorphism Form */
+/* Premium Card Form */
 .glass-form {
     width: 100%;
-    max-width: 560px;
-    padding: 3rem;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 24px;
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.2),
-        0 2px 8px rgba(0, 0, 0, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    max-width: 580px;
+    padding: 3.5rem;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    box-shadow: var(--shadow-xl);
     transition: all var(--transition-smooth);
 }
 
-/* Form on white background - keep it glass-like */
+.glass-form:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* Form on white background - same styling */
 .glass-form.on-white {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        0 2px 8px rgba(0, 0, 0, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-xl);
 }
 
 /* Form Groups with Floating Labels */
 .form-group {
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 1rem 0.75rem 0.5rem;
+    padding: 1.125rem 1rem 0.625rem;
     font-size: 1rem;
     font-family: inherit;
-    color: var(--white);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
+    color: var(--charcoal);
+    background: var(--gray-50);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 10px;
     outline: none;
-    transition: all var(--transition-smooth);
+    transition: all var(--transition-fast);
 }
 
 .glass-form.on-white .form-group input,
@@ -219,16 +194,17 @@ main {
 .form-group.on-white input,
 .form-group.on-white textarea,
 .form-group.on-white select {
-    color: var(--black) !important;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: var(--charcoal);
+    background: var(--gray-50);
+    border: 1.5px solid var(--gray-200);
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-    border-color: rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--accent);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(59, 93, 135, 0.1);
 }
 
 .glass-form.on-white .form-group input:focus,
@@ -237,8 +213,9 @@ main {
 .form-group.on-white input:focus,
 .form-group.on-white textarea:focus,
 .form-group.on-white select:focus {
-    border-color: rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--accent);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(59, 93, 135, 0.1);
 }
 
 /* Select dropdown specific styling */
@@ -247,31 +224,32 @@ main {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: var(--gray-50);
 }
 
 .glass-form.on-white .form-group select {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: var(--gray-50);
 }
 
 .form-group select option {
-    background: var(--black);
-    color: var(--white);
+    background: var(--white);
+    color: var(--charcoal);
 }
 
 .form-group label {
     position: absolute;
-    left: 0.75rem;
-    top: 1rem;
+    left: 1rem;
+    top: 1.125rem;
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--gray-600);
     pointer-events: none;
-    transition: all var(--transition-smooth);
+    transition: all var(--transition-fast);
+    font-weight: 500;
 }
 
 .glass-form.on-white .form-group label,
 .form-group.on-white label {
-    color: rgba(0, 0, 0, 0.6) !important;
+    color: var(--gray-600);
 }
 
 .form-group input:focus + label,
@@ -280,9 +258,10 @@ main {
 .form-group textarea:valid + label,
 .form-group select:focus + label,
 .form-group select:valid + label {
-    top: 0.25rem;
+    top: 0.375rem;
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--accent);
+    font-weight: 600;
 }
 
 .glass-form.on-white .form-group input:focus + label,
@@ -297,7 +276,7 @@ main {
 .form-group.on-white textarea:valid + label,
 .form-group.on-white select:focus + label,
 .form-group.on-white select:valid + label {
-    color: rgba(0, 0, 0, 0.8) !important;
+    color: var(--accent);
 }
 
 /* Budget section removed */
@@ -306,31 +285,33 @@ main {
 .submit-btn {
     width: 100%;
     padding: 1rem 2rem;
-    font-size: 1rem;
+    font-size: 1.0625rem;
     font-weight: 600;
     color: var(--white);
-    background: var(--black);
+    background: var(--navy);
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all var(--transition-smooth);
+    transition: all var(--transition-fast);
     position: relative;
     overflow: hidden;
+    margin-top: 0.5rem;
 }
 
 .glass-form.on-white .submit-btn,
 .submit-btn.on-white {
-    color: var(--white) !important;
-    background: var(--black) !important;
+    color: var(--white);
+    background: var(--navy);
 }
 
 .submit-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: var(--navy-light);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px -5px rgba(30, 58, 95, 0.3);
 }
 
 .glass-form.on-white .submit-btn:hover:not(:disabled) {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 25px -5px rgba(30, 58, 95, 0.3);
 }
 
 .submit-btn:active:not(:disabled) {
@@ -346,7 +327,7 @@ main {
     display: none;
     width: 20px;
     height: 20px;
-    border: 2px solid var(--black);
+    border: 2px solid var(--white);
     border-top-color: transparent;
     border-radius: 50%;
     animation: spin 0.6s linear infinite;
@@ -411,7 +392,7 @@ main {
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: opacity 0.4s ease-in 0.1s;
+    transition: opacity 0.5s ease-in 0.1s;
 }
 
 .success-card.show {
@@ -423,16 +404,16 @@ main {
     font-size: clamp(2rem, 5vw, 2.5rem);
     font-weight: 600;
     letter-spacing: -0.02em;
-    margin-bottom: 0.75rem;
-    color: var(--black);
+    margin-bottom: 1rem;
+    color: var(--charcoal);
     line-height: 1.2;
 }
 
 .success-card p {
     font-size: clamp(1.125rem, 2.5vw, 1.25rem);
-    color: rgba(0, 0, 0, 0.65);
-    line-height: 1.5;
-    max-width: 400px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    max-width: 420px;
 }
 
 @media (max-width: 768px) {
@@ -444,85 +425,96 @@ main {
 
 /* Examples Section */
 .examples {
-    min-height: 50vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4rem 2rem;
-    color: var(--white);
+    padding: 6rem 2rem;
     text-align: center;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    position: relative;
 }
 
 .examples h2 {
-    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
     font-weight: 600;
-    letter-spacing: -0.01em;
-    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    color: var(--white);
 }
 
 .example-links {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
     align-items: center;
 }
 
 .example-links a {
     color: var(--white);
     text-decoration: none;
-    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
     position: relative;
-    transition: color var(--transition-smooth);
+    transition: all var(--transition-fast);
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 500;
 }
 
 .example-links a::after {
     content: '';
     position: absolute;
-    bottom: -4px;
-    left: 0;
+    bottom: 0.5rem;
+    left: 2rem;
     width: 0;
-    height: 1px;
+    height: 2px;
     background: var(--white);
-    transition: width var(--transition-smooth);
+    transition: width var(--transition-fast);
 }
 
 .example-links a:hover {
-    color: var(--gray-light);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .example-links a:hover::after {
-    width: 100%;
+    width: calc(100% - 4rem);
 }
 
 /* Focus Styles for Accessibility */
 *:focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline: 3px solid var(--accent);
     outline-offset: 2px;
+    border-radius: 4px;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     .glass-form {
-        padding: 2rem 1.5rem;
+        padding: 2.5rem 2rem;
     }
 
     .hero {
-        min-height: 50vh;
+        min-height: 60vh;
+        padding: 6rem 2rem 3rem;
     }
 
     .form-section {
-        min-height: auto;
-        padding: 2rem 1rem;
+        padding: 4rem 1.5rem;
     }
 
     .examples {
-        min-height: 40vh;
+        min-height: 50vh;
+        padding: 4rem 2rem;
     }
 }
 
 @media (max-width: 480px) {
     .glass-form {
-        padding: 1.5rem 1rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .hero {
+        padding: 5rem 1.5rem 2.5rem;
     }
 }

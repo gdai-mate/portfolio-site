@@ -1,115 +1,28 @@
-// Parallax scroll effect for diagonal background
-const diagonalBg = document.querySelector('.diagonal-bg');
-const glassForm = document.querySelector('.glass-form');
+// Smooth fade-in animation on load
+document.addEventListener('DOMContentLoaded', () => {
+    const hero = document.querySelector('.hero');
+    const form = document.querySelector('.glass-form');
 
-function handleScroll() {
-    const scrollY = window.scrollY;
-    const isMobile = window.innerWidth <= 768;
-    const parallaxSpeed = isMobile ? 2.0 : 1.5;
-    const offset = -scrollY * parallaxSpeed;
-
-    if (diagonalBg) {
-        diagonalBg.style.transform = `translateY(${offset}px)`;
+    if (hero) {
+        hero.style.opacity = '0';
+        hero.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            hero.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            hero.style.opacity = '1';
+            hero.style.transform = 'translateY(0)';
+        }, 100);
     }
 
-    // Check each form field individually as diagonal crosses over it
-    if (glassForm) {
-        const viewportHeight = window.innerHeight;
-        // The diagonal background is 300vh tall, starts at 32% (or 30% on mobile)
-        // With parallax at 2.0x speed on mobile (1.5x on desktop), it moves faster
-        // The diagonal line is at X% of the background element
-        const gradientPercent = isMobile ? 0.30 : 0.32;
-
-        // Background height is 300vh, diagonal is at X% of that
-        const bgHeightPx = viewportHeight * 3;
-        const diagonalOffsetInBg = bgHeightPx * gradientPercent;
-
-        // With parallax, the diagonal moves down by offset amount
-        const diagonalLineY = diagonalOffsetInBg + offset;
-
-        // Check each form group individually
-        const formGroups = glassForm.querySelectorAll('.form-group');
-
-        formGroups.forEach((group, index) => {
-            const rect = group.getBoundingClientRect();
-            const groupMiddle = rect.top + (rect.height / 2);
-
-            const input = group.querySelector('input, textarea, select');
-            const label = group.querySelector('label');
-
-            // If group is ABOVE the diagonal line (smaller Y), it's in white section = black text
-            // If group is BELOW the diagonal line (bigger Y), it's in black section = white text
-            if (groupMiddle < diagonalLineY) {
-                // On white background - use black text
-                if (input) {
-                    input.style.setProperty('color', '#0a0a0a', 'important');
-                }
-                if (label) {
-                    label.style.setProperty('color', 'rgba(0, 0, 0, 0.6)', 'important');
-                }
-            } else {
-                // On black background - use white text
-                if (input) {
-                    input.style.setProperty('color', '#fafafa', 'important');
-                }
-                if (label) {
-                    label.style.setProperty('color', 'rgba(255, 255, 255, 0.6)', 'important');
-                }
-            }
-        });
-
-        // Check submit button too
-        const submitBtn = glassForm.querySelector('.submit-btn');
-        if (submitBtn) {
-            const btnRect = submitBtn.getBoundingClientRect();
-            const btnMiddle = btnRect.top + (btnRect.height / 2);
-
-            if (btnMiddle < diagonalLineY) {
-                // On white - black button
-                submitBtn.style.color = '#fafafa';
-                submitBtn.style.background = '#0a0a0a';
-            } else {
-                // On black - keep black button with white text
-                submitBtn.style.color = '#fafafa';
-                submitBtn.style.background = '#0a0a0a';
-            }
-        }
-
-        // Check success card if visible
-        const successCard = glassForm.querySelector('.success-card.show');
-        if (successCard) {
-            const cardRect = successCard.getBoundingClientRect();
-            const cardMiddle = cardRect.top + (cardRect.height / 2);
-            const heading = successCard.querySelector('h2');
-            const paragraph = successCard.querySelector('p');
-
-            if (cardMiddle < diagonalLineY) {
-                // On white background - use black text
-                if (heading) heading.style.setProperty('color', '#0a0a0a', 'important');
-                if (paragraph) paragraph.style.setProperty('color', 'rgba(0, 0, 0, 0.65)', 'important');
-            } else {
-                // On black background - use white text
-                if (heading) heading.style.setProperty('color', '#fafafa', 'important');
-                if (paragraph) paragraph.style.setProperty('color', 'rgba(255, 255, 255, 0.65)', 'important');
-            }
-        }
-    }
-}
-
-// Throttle scroll for performance
-let ticking = false;
-window.addEventListener('scroll', () => {
-    if (!ticking) {
-        window.requestAnimationFrame(() => {
-            handleScroll();
-            ticking = false;
-        });
-        ticking = true;
+    if (form) {
+        form.style.opacity = '0';
+        form.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            form.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            form.style.opacity = '1';
+            form.style.transform = 'translateY(0)';
+        }, 300);
     }
 });
-
-// Run on load
-handleScroll();
 
 // Form handling
 const form = document.getElementById('enquiry-form');

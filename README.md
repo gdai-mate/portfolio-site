@@ -21,7 +21,7 @@ Simple, clean portfolio site showcasing website building services.
 
 The form uses Formspree for secure email delivery. Your form endpoint is already configured in `script.js`:
 - Form ID: `mblpgzpk`
-- Submissions are sent to: `info@gdaimate.com`
+- Submissions are sent to: `agramontevictoria97@gmail.com`
 - Free tier: 50 submissions/month with spam filtering
 
 ## Local Development
@@ -42,13 +42,13 @@ This site is configured to deploy via GitHub Pages automatically.
 
 ## Custom Domain Setup
 
-To use `gdaimate.com.au`:
+To use `ubuntu-expo.com`:
 
-1. Add a `CNAME` file to the repository root with: `gdaimate.com.au`
+1. Add a `CNAME` file to the repository root with: `ubuntu-expo.com`
 2. In your domain registrar, add these DNS records:
    - Type: `CNAME`
    - Name: `@` (or leave blank for root domain)
-   - Value: `gdaimate.github.io`
+   - Value: `ubuntu-expo.com`
    - Or use A records pointing to GitHub's IPs if CNAME for root is not supported
 3. Enable HTTPS in GitHub Pages settings
 

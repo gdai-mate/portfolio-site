@@ -74,6 +74,25 @@ function handleScroll() {
                 submitBtn.style.background = '#0a0a0a';
             }
         }
+
+        // Check success card if visible
+        const successCard = glassForm.querySelector('.success-card.show');
+        if (successCard) {
+            const cardRect = successCard.getBoundingClientRect();
+            const cardMiddle = cardRect.top + (cardRect.height / 2);
+            const heading = successCard.querySelector('h2');
+            const paragraph = successCard.querySelector('p');
+
+            if (cardMiddle < diagonalLineY) {
+                // On white background - use black text
+                if (heading) heading.style.setProperty('color', '#0a0a0a', 'important');
+                if (paragraph) paragraph.style.setProperty('color', 'rgba(0, 0, 0, 0.65)', 'important');
+            } else {
+                // On black background - use white text
+                if (heading) heading.style.setProperty('color', '#fafafa', 'important');
+                if (paragraph) paragraph.style.setProperty('color', 'rgba(255, 255, 255, 0.65)', 'important');
+            }
+        }
     }
 }
 
@@ -96,6 +115,8 @@ handleScroll();
 const form = document.getElementById('enquiry-form');
 const submitBtn = form ? form.querySelector('.submit-btn') : null;
 const formMessage = form ? form.querySelector('.form-message') : null;
+const formFields = form ? form.querySelector('.form-fields') : null;
+const successCard = form ? form.querySelector('.success-card') : null;
 
 // Web3Forms endpoint
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
@@ -188,10 +209,16 @@ if (form) {
         submitBtn.classList.remove('loading');
 
         if (result.success) {
-            showMessage('success', "Thanks — I'll be in touch within 24 hours");
-            form.reset();
+            // Fade out form fields
+            formFields.classList.add('hidden');
+
+            // After fade completes, hide fields and show success card
+            setTimeout(() => {
+                formFields.style.display = 'none';
+                successCard.classList.add('show');
+            }, 300);
         } else {
-            showMessage('error', 'Something went wrong. Please try again or email directly at info@gdaimate.com');
+            showMessage('error', 'Something went wrong. Please try again or email directly at agramontevictoria97@gmail.com');
         }
     });
 }

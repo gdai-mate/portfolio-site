@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Asgard Bishop</title>
+  <meta name="description" content="Asgard Bishop — AI engineer and business operator based in Brisbane.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0A0A0A;
+      --black-deep: #050505;
+      --charcoal: #1C1C1C;
+      --charcoal-light: #2A2A2A;
+      --silver: #C8C8C8;
+      --white: #EDEDED;
+      --white-70: rgba(237, 237, 237, 0.7);
+      --white-40: rgba(237, 237, 237, 0.35);
+      --white-20: rgba(237, 237, 237, 0.15);
+      --white-10: rgba(237, 237, 237, 0.08);
+    }
+
+    html {
+      height: 100%;
+      background: var(--black-deep);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.015) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(255, 255, 255, 0.008) 0%, transparent 40%),
+        var(--black);
+      line-height: 1.6;
+    }
+
+    /* ══════ LAYOUT ══════ */
+    .site {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 64px);
+    }
+
+    /* ══════ HERO ══════ */
+    .hero {
+      display: grid;
+      grid-template-columns: 0.45fr 0.55fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: center;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: clamp(40px, 8vh, 80px) 0;
+    }
+
+    .hero-photo {
+      position: relative;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 12px;
+      display: block;
+      filter: grayscale(15%) contrast(1.05);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(20px, 3vh, 32px);
+    }
+
+    .hero-monogram {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .hero-name {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--white);
+    }
+
+    .hero-tagline {
+      font-size: clamp(14px, 1.8vw, 18px);
+      font-weight: 300;
+      color: var(--silver);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-rule {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, var(--silver), transparent);
+    }
+
+    .hero-bio {
+      font-size: clamp(14px, 1.6vw, 16px);
+      font-weight: 400;
+      color: var(--white-70);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    .hero-bio p + p {
+      margin-top: 1em;
+    }
+
+    /* ══════ SECTION: CURRENTLY ══════ */
+    .section {
+      padding: clamp(60px, 10vh, 100px) 0;
+      border-top: 1px solid var(--white-10);
+    }
+
+    .section-label {
+      font-size: clamp(10px, 1.2vw, 12px);
+      font-weight: 500;
+      color: var(--white-40);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: clamp(28px, 4vh, 44px);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: clamp(20px, 3vw, 32px);
+    }
+
+    .project {
+      background: var(--charcoal);
+      border-radius: 12px;
+      padding: clamp(24px, 3vw, 32px);
+      border: 1px solid var(--white-10);
+      transition: border-color 0.3s;
+    }
+
+    .project:hover {
+      border-color: var(--white-20);
+    }
+
+    .project-name {
+      font-size: clamp(16px, 1.8vw, 19px);
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .project-type {
+      font-size: clamp(10px, 1.1vw, 12px);
+      font-weight: 500;
+      color: var(--silver);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: clamp(12px, 1.5vh, 16px);
+    }
+
+    .project-desc {
+      font-size: clamp(13px, 1.4vw, 15px);
+      font-weight: 400;
+      color: var(--white-70);
+      line-height: 1.6;
+    }
+
+    /* ══════ CONTACT ══════ */
+    .contact {
+      padding: clamp(60px, 10vh, 100px) 0;
+      border-top: 1px solid var(--white-10);
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(16px, 2vw, 24px);
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: clamp(10px, 1.4vh, 14px) clamp(18px, 2.5vw, 28px);
+      border: 1px solid var(--white-20);
+      border-radius: 100px;
+      background: transparent;
+      color: var(--silver);
+      font-family: inherit;
+      font-size: clamp(12px, 1.3vw, 14px);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--silver);
+      color: var(--white);
+      background: rgba(200, 200, 200, 0.05);
+    }
+
+    .contact-link svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      opacity: 0.6;
+    }
+
+    /* ══════ FOOTER ══════ */
+    .footer {
+      padding: clamp(24px, 4vh, 40px) 0;
+      border-top: 1px solid var(--white-10);
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 11px;
+      color: var(--white-40);
+      letter-spacing: 0.06em;
+    }
+
+    /* ══════ MOBILE ══════ */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: clamp(28px, 5vh, 44px);
+        min-height: auto;
+        padding-top: clamp(48px, 10vh, 80px);
+      }
+
+      .hero-photo {
+        max-width: 320px;
+      }
+
+      .hero-photo img {
+        max-width: 100%;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="site">
+
+  <section class="hero">
+    <div class="hero-photo">
+      <img src="photo.jpg" alt="Asgard Bishop">
+    </div>
+    <div class="hero-content">
+      <div class="hero-monogram">AB</div>
+      <h1 class="hero-name">Asgard Bishop</h1>
+      <div class="hero-tagline">AI Engineer. Business Operator.</div>
+      <div class="hero-rule"></div>
+      <div class="hero-bio">
+        <p>I build AI systems for businesses that are still running on spreadsheets and gut feel. The kind of places where someone's spending four hours a week on something a machine could do in ten seconds. That's what I fix.</p>
+        <p>Hospitality, demolition, landscaping, sales, running a cafe solo for three months while the owner was overseas. I've done the actual work. So when I build a system for your business, it's not theoretical. I know what it feels like when the process is broken because I've been the person stuck inside it.</p>
+        <p>26. Brisbane. Self-taught. Probably too honest for my own good.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">What I'm working on</div>
+    <div class="projects">
+      <div class="project">
+        <div class="project-name">G'dai Mate</div>
+        <div class="project-type">AI Consulting</div>
+        <div class="project-desc">Helping businesses actually use AI instead of just talking about it. Workflow automation, internal tools, systems that save real hours every week.</div>
+      </div>
+      <div class="project">
+        <div class="project-name">Business Acquisitions</div>
+        <div class="project-type">Buy + Transform</div>
+        <div class="project-desc">Finding good businesses with operational drag and using AI to unlock what's already there. Looking at SEQ-based SMBs with $500K-$3M revenue.</div>
+      </div>
+      <div class="project">
+        <div class="project-name">Hermes</div>
+        <div class="project-type">Personal AI System</div>
+        <div class="project-desc">My own AI operating system. Manages calendar, email, CRM, research, and decision support. Built it for myself, now it runs most of my day.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="section-label">Get in touch</div>
+    <div class="contact-grid">
+      <a href="mailto:asgardbishop@gmail.com" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        asgardbishop@gmail.com
+      </a>
+      <a href="tel:+61480792472" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        0480 792 472
+      </a>
+      <a href="https://linkedin.com/in/asgardbishop" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-text">Brisbane, Australia</div>
+  </footer>
+
+</div>
+
+</body>
+</html>

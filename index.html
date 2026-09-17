@@ -1,329 +1,464 @@
 <!DOCTYPE html>
 <html lang="en-AU">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Asgard Bishop</title>
-  <meta name="description" content="Asgard Bishop — AI engineer and business operator based in Brisbane.">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --black: #0A0A0A;
-      --black-deep: #050505;
-      --charcoal: #1C1C1C;
-      --charcoal-light: #2A2A2A;
-      --silver: #C8C8C8;
-      --white: #EDEDED;
-      --white-70: rgba(237, 237, 237, 0.7);
-      --white-40: rgba(237, 237, 237, 0.35);
-      --white-20: rgba(237, 237, 237, 0.15);
-      --white-10: rgba(237, 237, 237, 0.08);
-    }
-
-    html {
-      height: 100%;
-      background: var(--black-deep);
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      color: var(--white);
-      -webkit-font-smoothing: antialiased;
-      background:
-        radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.015) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 100%, rgba(255, 255, 255, 0.008) 0%, transparent 40%),
-        var(--black);
-      line-height: 1.6;
-    }
-
-    /* ══════ LAYOUT ══════ */
-    .site {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 clamp(24px, 5vw, 64px);
-    }
-
-    /* ══════ HERO ══════ */
-    .hero {
-      display: grid;
-      grid-template-columns: 0.45fr 0.55fr;
-      gap: clamp(40px, 6vw, 80px);
-      align-items: center;
-      min-height: 100vh;
-      min-height: 100dvh;
-      padding: clamp(40px, 8vh, 80px) 0;
-    }
-
-    .hero-photo {
-      position: relative;
-    }
-
-    .hero-photo img {
-      width: 100%;
-      max-width: 420px;
-      border-radius: 12px;
-      display: block;
-      filter: grayscale(15%) contrast(1.05);
-    }
-
-    .hero-content {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(20px, 3vh, 32px);
-    }
-
-    .hero-monogram {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(36px, 5vw, 52px);
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: var(--white);
-      line-height: 1;
-    }
-
-    .hero-name {
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      color: var(--white);
-    }
-
-    .hero-tagline {
-      font-size: clamp(14px, 1.8vw, 18px);
-      font-weight: 300;
-      color: var(--silver);
-      letter-spacing: 0.02em;
-    }
-
-    .hero-rule {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(to right, var(--silver), transparent);
-    }
-
-    .hero-bio {
-      font-size: clamp(14px, 1.6vw, 16px);
-      font-weight: 400;
-      color: var(--white-70);
-      line-height: 1.7;
-      max-width: 480px;
-    }
-
-    .hero-bio p + p {
-      margin-top: 1em;
-    }
-
-    /* ══════ SECTION: CURRENTLY ══════ */
-    .section {
-      padding: clamp(60px, 10vh, 100px) 0;
-      border-top: 1px solid var(--white-10);
-    }
-
-    .section-label {
-      font-size: clamp(10px, 1.2vw, 12px);
-      font-weight: 500;
-      color: var(--white-40);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: clamp(28px, 4vh, 44px);
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: clamp(20px, 3vw, 32px);
-    }
-
-    .project {
-      background: var(--charcoal);
-      border-radius: 12px;
-      padding: clamp(24px, 3vw, 32px);
-      border: 1px solid var(--white-10);
-      transition: border-color 0.3s;
-    }
-
-    .project:hover {
-      border-color: var(--white-20);
-    }
-
-    .project-name {
-      font-size: clamp(16px, 1.8vw, 19px);
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-
-    .project-type {
-      font-size: clamp(10px, 1.1vw, 12px);
-      font-weight: 500;
-      color: var(--silver);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: clamp(12px, 1.5vh, 16px);
-    }
-
-    .project-desc {
-      font-size: clamp(13px, 1.4vw, 15px);
-      font-weight: 400;
-      color: var(--white-70);
-      line-height: 1.6;
-    }
-
-    /* ══════ CONTACT ══════ */
-    .contact {
-      padding: clamp(60px, 10vh, 100px) 0;
-      border-top: 1px solid var(--white-10);
-    }
-
-    .contact-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: clamp(16px, 2vw, 24px);
-    }
-
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: clamp(10px, 1.4vh, 14px) clamp(18px, 2.5vw, 28px);
-      border: 1px solid var(--white-20);
-      border-radius: 100px;
-      background: transparent;
-      color: var(--silver);
-      font-family: inherit;
-      font-size: clamp(12px, 1.3vw, 14px);
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      text-decoration: none;
-      transition: all 0.25s;
-    }
-
-    .contact-link:hover {
-      border-color: var(--silver);
-      color: var(--white);
-      background: rgba(200, 200, 200, 0.05);
-    }
-
-    .contact-link svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-      opacity: 0.6;
-    }
-
-    /* ══════ FOOTER ══════ */
-    .footer {
-      padding: clamp(24px, 4vh, 40px) 0;
-      border-top: 1px solid var(--white-10);
-      text-align: center;
-    }
-
-    .footer-text {
-      font-size: 11px;
-      color: var(--white-40);
-      letter-spacing: 0.06em;
-    }
-
-    /* ══════ MOBILE ══════ */
-    @media (max-width: 768px) {
-      .hero {
-        grid-template-columns: 1fr;
-        gap: clamp(28px, 5vh, 44px);
-        min-height: auto;
-        padding-top: clamp(48px, 10vh, 80px);
-      }
-
-      .hero-photo {
-        max-width: 320px;
-      }
-
-      .hero-photo img {
-        max-width: 100%;
-      }
-
-      .projects {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asgard Bishop — flight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0F0D0B; --text:#ECE6DA; --soft:#A79E8E; --faint:#6E665A; --clay:#DB9145; --hair:rgba(236,230,218,.14); --serif:'Cormorant Garamond',Georgia,serif; --sans:'Inter',sans-serif; --mono:'JetBrains Mono',monospace; --hand:'Caveat',cursive; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ background:var(--bg); }
+  .scroller{ position:relative; height:800vh; z-index:2; pointer-events:none; }
+  .hint{ position:fixed; left:50%; bottom:26px; transform:translateX(-50%); z-index:6; font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--faint); animation:pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ opacity:.35 } 50%{ opacity:.85 } }
+  .lbl{ position:fixed; z-index:5; pointer-events:none; opacity:0; transform:translate(-50%,0); white-space:nowrap; text-align:center; }
+  .lbl .tag{ display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--clay); margin-bottom:5px; }
+  .lbl .name{ font-family:var(--serif); font-style:italic; font-size:clamp(26px,3.4vw,44px); line-height:1; color:var(--text); }
+  .rail{ position:fixed; right:24px; top:50%; transform:translateY(-50%); z-index:6; display:flex; flex-direction:column; gap:10px; }
+  .rail .d{ width:6px; height:6px; border-radius:50%; background:rgba(236,230,218,.16); transition:all .3s; }
+  .rail .d.on{ background:var(--clay); transform:scale(1.6); }
+  #hero{ position:fixed; left:clamp(24px,6vw,92px); top:50%; transform:translateY(-50%); z-index:6; max-width:min(520px,44vw); opacity:0; pointer-events:none; }
+  #hero .hk{ font-family:var(--mono); font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:22px; }
+  #hero .hh{ font-family:var(--serif); font-size:clamp(30px,3.6vw,56px); line-height:1.1; color:var(--text); }
+  #hero .hh em{ color:var(--clay); font-style:italic; }
+  #hero .hs{ margin-top:22px; font-family:'Inter',sans-serif; font-size:clamp(14px,1.4vw,17px); color:var(--soft); line-height:1.65; max-width:40ch; }
+  #contact{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:6; width:min(860px,92vw); display:flex; gap:46px; align-items:center; opacity:0; pointer-events:none; }
+  #contact .cphoto{ width:208px; height:298px; object-fit:cover; object-position:center 12%; border-radius:16px; flex-shrink:0; }
+  #contact .cbody{ flex:1; text-align:left; }
+  #contact .p{ font-family:var(--serif); font-size:clamp(22px,2.6vw,32px); color:var(--text); line-height:1.24; }
+  #contact input{ margin-top:20px; width:100%; max-width:420px; background:transparent; border:none; border-bottom:1px solid var(--faint); font-family:var(--hand); font-size:28px; color:var(--text); text-align:left; padding:6px 4px 12px; caret-color:var(--clay); outline:none; }
+  #contact input::placeholder{ color:var(--faint); }
+  #contact .cn{ margin-top:20px; font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--faint); line-height:1.7; }
+  #contact .cquote{ margin-top:24px; padding-top:20px; border-top:1px solid var(--hair); font-family:var(--serif); font-style:italic; font-size:17px; line-height:1.5; color:var(--soft); max-width:450px; transition:opacity .5s ease; }
+  #contact .cquote .ca{ display:block; margin-top:12px; font-family:var(--mono); font-style:normal; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); }
+  #contact .cquote .ca b{ color:var(--clay); font-weight:400; }
+  #contact .cquote .ca i{ font-style:normal; opacity:.5; margin:0 8px; }
+  /* content panels that compose beside each station */
+  .panel{ position:fixed; top:50%; transform:translateY(-50%); width:min(44vw,470px); z-index:5; opacity:0; pointer-events:none; will-change:opacity,transform; }
+  .panel.l{ left:clamp(24px,6vw,92px); }
+  .panel.r{ right:clamp(24px,6vw,92px); }
+  .panel .ey{ font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--clay); margin-bottom:16px; }
+  .panel h2{ font-family:var(--serif); font-weight:500; font-size:clamp(28px,3.3vw,48px); line-height:1.06; letter-spacing:-.01em; color:var(--text); margin-bottom:20px; }
+  .panel .lead{ font-family:var(--sans); font-size:15.5px; line-height:1.72; color:var(--soft); max-width:44ch; }
+  .panel .deep{ font-family:var(--sans); font-size:13px; line-height:1.66; color:var(--faint); margin-top:18px; padding-top:15px; border-top:1px solid var(--hair); max-width:44ch; }
+  .panel .intro{ font-family:var(--sans); font-size:15px; line-height:1.7; color:var(--soft); margin-bottom:20px; max-width:44ch; }
+  .panel.list{ width:min(42vw,460px); }
+  .panel.list h2{ font-size:clamp(25px,2.7vw,37px); margin-bottom:15px; }
+  .panel .plist{ display:flex; flex-direction:column; gap:12px; }
+  .panel .plist .k{ font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--clay); margin-bottom:4px; }
+  .panel .plist .t{ font-family:var(--sans); font-size:13px; line-height:1.5; color:var(--soft); max-width:46ch; }
+  .beat{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:5; width:min(620px,80vw); text-align:center; opacity:0; pointer-events:none; font-family:var(--serif); font-size:clamp(20px,2.4vw,30px); font-style:italic; line-height:1.32; color:var(--text); }
+  /* per-step diagram drawn straight into the node graph, arms grow from the real node */
+  #diaglayer{ position:fixed; inset:0; z-index:5; pointer-events:none; overflow:visible; }
+  #diaglayer text{ font-family:var(--mono); font-size:12.5px; letter-spacing:.04em; fill:#ECE6DA; fill-opacity:.82; }
+  #diaglayer .limb{ stroke:#DB9145; stroke-width:1; fill:none; opacity:.6; }
+  #diaglayer .limb.dashed{ stroke-dasharray:2.5 5; opacity:.4; }
+  #diaglayer .ret{ stroke:#DB9145; stroke-width:1; fill:none; opacity:.32; }
+  #diaglayer .basin{ stroke:#DB9145; stroke-width:1; fill:none; opacity:.32; }
+  #diaglayer .ep{ fill:#ECE6DA; }
+  #diaglayer .sh{ stroke:#ECE6DA; stroke-width:1.5; fill:none; }
+  #diaglayer .pbox{ fill:none; stroke:#DB9145; stroke-width:1; opacity:.42; }
+  #diaglayer .pdial{ fill:none; stroke:#ECE6DA; stroke-width:1.4; opacity:.6; }
+  #diaglayer .ptog{ fill:none; stroke:#DB9145; stroke-width:1; opacity:.5; }
+  #diaglayer .pknob{ fill:#DB9145; }
+  #diaglayer .brk{ stroke:#DB9145; stroke-width:1.4; fill:none; opacity:.8; }
+  #diaglayer .ffield{ stroke:#DB9145; stroke-width:1; fill:none; opacity:.28; }
+  #diaglayer .shield{ stroke:#DB9145; stroke-width:1.5; fill:rgba(219,145,69,.05); opacity:.9; }
+  #diaglayer .shield-i{ stroke:#DB9145; stroke-width:1.4; fill:none; opacity:.9; }
+  /* proof as readable benefit bubbles scattered over the brain */
+  #proofbubbles{ position:fixed; inset:0; z-index:5; pointer-events:none; opacity:0; }
+  #proofbubbles .ph{ position:absolute; top:8%; left:50%; transform:translateX(-50%); font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--clay); }
+  #proofbubbles .bub{ position:absolute; max-width:262px; background:rgba(15,13,11,.64); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); border:1px solid var(--hair); border-radius:15px; padding:13px 18px; font-family:var(--serif); font-size:19px; line-height:1.28; color:var(--text); opacity:0; transform:translateY(12px); transition:opacity .55s ease, transform .55s ease; }
+  #proofbubbles.on .bub{ opacity:1; transform:none; }
+  /* cockpit dashboard */
+  .dash{ position:fixed; top:50%; transform:translateY(-50%); z-index:5; width:min(40vw,392px); opacity:0; pointer-events:none; background:rgba(17,15,12,.85); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px); border:1px solid var(--hair); border-radius:14px; padding:18px 20px; }
+  .dash.l{ left:clamp(24px,6vw,92px); } .dash.r{ right:clamp(24px,6vw,92px); }
+  .dash .dbar{ display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--hair); padding-bottom:12px; margin-bottom:15px; }
+  .dash .dt{ font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--soft); }
+  .dash .dlive{ font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--clay); display:flex; align-items:center; gap:7px; }
+  .dash .dlive::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--clay); box-shadow:0 0 8px var(--clay); }
+  .dash .dstats{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:16px; }
+  .dash .stat .n{ font-family:var(--serif); font-size:26px; color:var(--text); line-height:1; }
+  .dash .stat .l{ font-family:var(--mono); font-size:9px; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); margin-top:6px; }
+  .dash .dspark svg{ width:100%; height:42px; display:block; margin-bottom:16px; }
+  .dash .drows{ display:flex; flex-direction:column; gap:9px; margin-bottom:16px; }
+  .dash .row{ display:flex; align-items:center; font-family:var(--sans); font-size:13px; color:var(--soft); }
+  .dash .row .dot{ width:6px; height:6px; border-radius:50%; background:var(--clay); margin-right:10px; }
+  .dash .row .s{ margin-left:auto; font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+  .dash .dcmd{ border:1px solid var(--hair); border-radius:9px; padding:10px 13px; font-family:var(--sans); font-size:12.5px; color:var(--faint); }
+  .dash .dcmd .car{ color:var(--clay); }
+  .dash .row .dot.warn{ background:transparent; border:1.5px solid var(--clay); box-shadow:none; }
+  .dash .row .s.warn{ color:var(--clay); }
+  .dash .dlog{ border-top:1px solid var(--hair); padding-top:13px; display:flex; flex-direction:column; gap:9px; }
+  .dash .lrow{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:10.5px; letter-spacing:.03em; color:var(--faint); }
+  .dash .lrow span:last-child{ color:var(--soft); }
+  /* ---- mobile: brain up top, story reads along the bottom ---- */
+  @media (max-width:820px){
+    .dash, #diaglayer, .hint, .rail{ display:none !important; }
+    .panel{ top:auto; bottom:0; left:0 !important; right:0 !important; width:100%; transform:none;
+      padding:26px 26px calc(30px + env(safe-area-inset-bottom)); background:linear-gradient(to top, rgba(15,13,11,.94) 62%, rgba(15,13,11,0)); }
+    .panel .ey{ margin-bottom:11px; }
+    .panel h2{ font-size:29px; margin-bottom:13px; }
+    .panel .lead{ font-size:15px; line-height:1.6; max-width:none; }
+    .panel .deep{ font-size:12.5px; max-width:none; margin-top:14px; padding-top:12px; }
+    #hero{ top:auto; bottom:0; left:0; right:0; max-width:none; padding:0 26px calc(34px + env(safe-area-inset-bottom)); transform:none; }
+    #hero .hh{ font-size:clamp(32px,10vw,46px); }
+    #hero .hs{ font-size:15px; max-width:none; }
+    .beat{ width:86vw; font-size:20px; top:auto; bottom:16%; transform:translateX(-50%); }
+    .lbl .name{ font-size:22px; }
+    .rail{ right:12px; gap:8px; }
+    #proofbubbles{ display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start; gap:11px; padding:19% 22px calc(30px + env(safe-area-inset-bottom)); overflow-y:auto; }
+    #proofbubbles .ph{ position:static; transform:none; text-align:center; margin-bottom:6px; }
+    #proofbubbles .bub{ position:static !important; max-width:none; width:100%; font-size:16px; opacity:1; transform:none; }
+    #contact{ flex-direction:column; gap:22px; width:86vw; text-align:center; }
+    #contact .cphoto{ width:116px; height:150px; }
+    #contact .cbody{ text-align:center; }
+    #contact .p{ font-size:24px; }
+    #contact input{ margin-left:auto; margin-right:auto; text-align:center; }
+    #contact .cn{ max-width:none; }
+    #contact .cquote{ margin-left:auto; margin-right:auto; font-size:16px; }
+  }
+</style>
 </head>
 <body>
-
-<div class="site">
-
-  <section class="hero">
-    <div class="hero-photo">
-      <img src="photo.jpg" alt="Asgard Bishop">
-    </div>
-    <div class="hero-content">
-      <div class="hero-monogram">AB</div>
-      <h1 class="hero-name">Asgard Bishop</h1>
-      <div class="hero-tagline">AI Engineer. Business Operator.</div>
-      <div class="hero-rule"></div>
-      <div class="hero-bio">
-        <p>I build AI systems for businesses that are still running on spreadsheets and gut feel. The kind of places where someone's spending four hours a week on something a machine could do in ten seconds. That's what I fix.</p>
-        <p>Hospitality, demolition, landscaping, sales, running a cafe solo for three months while the owner was overseas. I've done the actual work. So when I build a system for your business, it's not theoretical. I know what it feels like when the process is broken because I've been the person stuck inside it.</p>
-        <p>26. Brisbane. Self-taught. Probably too honest for my own good.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">What I'm working on</div>
-    <div class="projects">
-      <div class="project">
-        <div class="project-name">G'dai Mate</div>
-        <div class="project-type">AI Consulting</div>
-        <div class="project-desc">Helping businesses actually use AI instead of just talking about it. Workflow automation, internal tools, systems that save real hours every week.</div>
-      </div>
-      <div class="project">
-        <div class="project-name">Business Acquisitions</div>
-        <div class="project-type">Buy + Transform</div>
-        <div class="project-desc">Finding good businesses with operational drag and using AI to unlock what's already there. Looking at SEQ-based SMBs with $500K-$3M revenue.</div>
-      </div>
-      <div class="project">
-        <div class="project-name">Hermes</div>
-        <div class="project-type">Personal AI System</div>
-        <div class="project-desc">My own AI operating system. Manages calendar, email, CRM, research, and decision support. Built it for myself, now it runs most of my day.</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact">
-    <div class="section-label">Get in touch</div>
-    <div class="contact-grid">
-      <a href="mailto:asgardbishop@gmail.com" class="contact-link">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        asgardbishop@gmail.com
-      </a>
-      <a href="tel:+61480792472" class="contact-link">
-        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        0480 792 472
-      </a>
-      <a href="https://linkedin.com/in/asgardbishop" class="contact-link">
-        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-text">Brisbane, Australia</div>
-  </footer>
-
+<div class="scroller"></div>
+<div id="hero">
+  <div class="hk">Brisbane, self-taught</div>
+  <div class="hh">I build a business a <em>brain</em>.</div>
+  <div class="hs">One connected system that remembers everything the business knows, does the actual work, and gets sharper every week.</div>
 </div>
+<div class="hint">scroll to fly</div>
+<div class="rail" id="rail"></div>
+<div id="contact"><img class="cphoto" src="photo.jpg" alt="Asgard Bishop"><div class="cbody"><div class="p">Tell me where your business is bleeding time or money.</div><input type="email" placeholder="write your email here"><div class="cn">Self-taught out of Brisbane, and everything I'd build for you already runs my own days first.</div><div class="cquote" id="cquote">“Since we launched I've had numerous enquiries and client leads, purely from my website traffic.”<span class="ca"><b>Amie E.</b><i>·</i>cleaning business<i>·</i>5.0 on Google</span></div></div></div>
 
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+
+const _tc=document.createElement('canvas');
+if(!(window.WebGLRenderingContext && (_tc.getContext('webgl')||_tc.getContext('experimental-webgl')))){
+  location.replace('/flat.html');
+} else {
+
+const CLAY='219,145,69', INK='236,230,218';
+const isM=innerWidth<820;   // phone / portrait build
+const scene=new THREE.Scene();
+scene.fog=new THREE.FogExp2(0x0F0D0B, 0.0016);
+const camera=new THREE.PerspectiveCamera(isM?88:66, innerWidth/innerHeight, 0.1, 3000);
+const renderer=new THREE.WebGLRenderer({antialias:!isM});
+renderer.setPixelRatio(Math.min(devicePixelRatio,isM?1.5:2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.setClearColor(0x0F0D0B,1);
+renderer.domElement.style.cssText='position:fixed;inset:0;width:100%;height:100%;z-index:1;';
+document.body.appendChild(renderer.domElement);
+
+function glowTex(rgb){ const c=document.createElement('canvas'); c.width=c.height=128; const g=c.getContext('2d'); const gr=g.createRadialGradient(64,64,0,64,64,64); gr.addColorStop(0,`rgba(${rgb},1)`); gr.addColorStop(.22,`rgba(${rgb},.5)`); gr.addColorStop(1,`rgba(${rgb},0)`); g.fillStyle=gr; g.fillRect(0,0,128,128); return new THREE.CanvasTexture(c); }
+const clayGlow=glowTex(CLAY), inkGlow=glowTex(INK);
+
+// ---- the nodes, in tour order, spread as a brain-like cluster ----
+// sx,sy = where the node parks on screen (fraction of half-screen; +x right, +y up). The content fills the opposite space.
+const nodes=[
+  {p:new THREE.Vector3(-82, 22, 62),  tag:'01', name:'The brain',    sx:0.34,  sy:0},
+  {p:new THREE.Vector3(  8, 58, 12),  tag:'02', name:'The pool',     sx:-0.44, sy:0.06},
+  {p:new THREE.Vector3( 88, 16,-40),  tag:'03', name:'The branches', sx:0.44,  sy:0.06},
+  {p:new THREE.Vector3( 38,-58, 32),  tag:'04', name:'The bloom',    sx:-0.4,  sy:-0.3},
+  {p:new THREE.Vector3(-32,-34,-72),  tag:'05', name:'The cockpit',  sx:0.42,  sy:-0.28},
+  {p:new THREE.Vector3(-68, 46,-32),  tag:'06', name:'Self-healing', sx:-0.44, sy:0.3},
+  {p:new THREE.Vector3(  6, -6,-96),  tag:'07', name:'Gated access', sx:0.44,  sy:0.28},
+];
+const nodeCopy=[
+ {ey:'Station 01', h:'Everyone gets the expert', lead:"The most experienced hand in the company, sitting beside every person on your team at once. It does the remembering and the grind, and it checks with you before anything leaves the building. Your people move faster, and you keep the wheel.", deep:"It reasons over everything the business knows, grounded in your real data. One shared expert on every channel, and nothing goes out in your name without your yes.", diag:{kind:'people', limbs:[{dx:-96,dy:-152,label:'Front desk'},{dx:-186,dy:-72,label:'New hire'},{dx:-214,dy:22,label:'Sales'},{dx:-160,dy:116,label:'Ops'},{dx:-96,dy:170,label:'You'}]}},
+ {ey:'The memory', h:'Everything it knows lives here', lead:"Pour everything the business knows into one deep pool. Every quote, every job, every customer, every decision, every hard-won lesson, all of it in one place your team can actually reach. This is the soil the whole system roots into.", deep:"A structured, linked data lake. One source of truth you query, instead of knowledge scattered across ten apps and a few people's heads.", diag:{kind:'pool', limbs:[{dx:104,dy:-140,label:'Quotes'},{dx:182,dy:-64,label:'Jobs'},{dx:214,dy:14,label:'Customers'},{dx:180,dy:88,label:'Decisions'},{dx:104,dy:150,label:'Lessons'}]}},
+ {ey:'The limbs', h:'Each arm does a real job', lead:"Arms grow out of the brain, and each one does a useful job on its own. A voice receptionist that catches the missed call and books the job. A content engine keeping the socials fed while you're on the tools. An invoice chaser clearing the admin backlog before it piles up. Every branch earns its keep alone, and they all share the same body and the same memory.", deep:"Each capability is a standalone limb wired into the pool. Add one, swap one, and the rest keep running.", diag:{kind:'radiate', limbs:[{dx:-104,dy:-140,label:'Web chat'},{dx:-182,dy:-72,label:'Voice receptionist'},{dx:-214,dy:2,label:'Content engine'},{dx:-182,dy:78,label:'Invoice chaser'},{dx:-104,dy:146,label:'Booking & intake'}]}},
+ {ey:'How it compounds', h:'It grows while you sleep', lead:"A tree whose fallen leaves feed the soil that grows more tree. Every branch writes back what it learns, so the memory gets sharper, and a sharper memory grows the next branch faster and cheaper than the last.", deep:"A closed learning loop. Each capability feeds the pool, every piece makes the whole more capable, and the cost of the next one keeps falling.", diag:{kind:'loop', limbs:[{dx:150,dy:-118,label:'Voice line'},{dx:214,dy:-6,label:'Content'},{dx:150,dy:112,label:'Quotes'}], newLimb:{dx:150,dy:184,label:'New skill'}}},
+ {ey:'One seat', h:'One cockpit, every gauge', lead:"Most setups bolt every gauge into a different room, so flying means running between them. This one has a single cockpit. One seat, one wheel, every dial in a glance.", deep:"One system means one control plane. Watch every branch live and change any rule in plain language. The whole thing adapts, no code.", dash:'control'},
+ {ey:'Heals itself', h:'Catches decay before it bites', lead:"Think of an immune system, or a gardener who lives in the garden and never lets it run to weeds. A cut that closes over before you even notice it.", deep:"It audits its own health around the clock. When something starts to decay, a broken automation, a stale link, a changed process, a failed backup, it repairs the thing or flags it.", dash:'health'},
+ {ey:'Scoped access', h:'Everyone feeds it, each gets their drawer', lead:"Everyone whispers what they know into the same big brain, so it gets sharper off all of them. Ask it something back and it only tells you the parts you're cleared to hear.", deep:"The brain is shared, retrieval is governed. Writes flow broadly into the central pool. Reads are scoped per role, so marketing feeds the whole but pulls back only marketing context, never sales or accounting. Least privilege by default.", diag:{kind:'gate'}},
+];
+const centroid=new THREE.Vector3();
+nodes.forEach(n=>centroid.add(n.p)); centroid.multiplyScalar(1/nodes.length);
+
+nodes.forEach((n,i)=>{
+  const glow=new THREE.Sprite(new THREE.SpriteMaterial({map:clayGlow, blending:THREE.AdditiveBlending, depthWrite:false, depthTest:false, transparent:true}));
+  glow.scale.setScalar(30); glow.position.copy(n.p); glow.renderOrder=3; scene.add(glow); n.glow=glow;
+  const core=new THREE.Sprite(new THREE.SpriteMaterial({map:clayGlow, blending:THREE.AdditiveBlending, depthWrite:false, depthTest:false, transparent:true}));
+  core.scale.setScalar(10); core.position.copy(n.p); core.renderOrder=4; scene.add(core); n.core=core;
+  const el=document.createElement('div'); el.className='lbl'; el.innerHTML=`<span class="tag">${n.tag}</span><span class="name">${n.name}</span>`; document.body.appendChild(el); n.el=el;
+  const d=document.createElement('div'); d.className='d'; document.getElementById('rail').appendChild(d); n.dot=d;
+  const c=nodeCopy[i], side=n.sx<0?'r':'l';
+  const pn=document.createElement('div'); pn.className='panel '+side;
+  pn.innerHTML=`<div class="ey">${c.ey}</div><h2>${c.h}</h2><div class="lead">${c.lead}</div><div class="deep">${c.deep}</div>`;
+  document.body.appendChild(pn); n.panel=pn;
+  if(c.diag){ n.diag=true; n.diagSpec=c.diag; }
+  if(c.dash){ n.diag=true; const dh=document.createElement('div'); dh.className='dash '+(n.sx<0?'l':'r');
+    dh.innerHTML = c.dash==='health' ? `<div class="dbar"><span class="dt">System health</span><span class="dlive">all watched</span></div>
+      <div class="dstats"><div class="stat"><div class="n">6</div><div class="l">systems live</div></div><div class="stat"><div class="n">1</div><div class="l">needs a touch-up</div></div><div class="stat"><div class="n">0</div><div class="l">down</div></div></div>
+      <div class="drows"><div class="row"><span class="dot"></span>Voice line<span class="s">live</span></div><div class="row"><span class="dot"></span>Booking sync<span class="s">live</span></div><div class="row"><span class="dot warn"></span>Content feed<span class="s warn">reconnecting</span></div><div class="row"><span class="dot"></span>Invoice chaser<span class="s">live</span></div></div>
+      <div class="dlog"><div class="lrow"><span>Stale link found, repaired</span><span>2m</span></div><div class="lrow"><span>Nightly backup retried, ok</span><span>1h</span></div><div class="lrow"><span>Voice line reconnected</span><span>3h</span></div></div>` : `<div class="dbar"><span class="dt">Control</span><span class="dlive">live</span></div>
+      <div class="dstats"><div class="stat"><div class="n">1,240</div><div class="l">invoices cleared</div></div><div class="stat"><div class="n">42</div><div class="l">jobs booked</div></div><div class="stat"><div class="n">99.9%</div><div class="l">uptime</div></div></div>
+      <div class="dspark"><svg viewBox="0 0 340 42" preserveAspectRatio="none"><polyline fill="none" stroke="#DB9145" stroke-width="1.5" points="0,34 34,28 68,30 102,20 136,24 170,14 204,18 238,9 272,12 306,5 340,7"/><polyline fill="rgba(219,145,69,.08)" stroke="none" points="0,42 0,34 34,28 68,30 102,20 136,24 170,14 204,18 238,9 272,12 306,5 340,7 340,42"/></svg></div>
+      <div class="drows"><div class="row"><span class="dot"></span>Voice line<span class="s">live</span></div><div class="row"><span class="dot"></span>Content engine<span class="s">live</span></div><div class="row"><span class="dot"></span>Invoice chaser<span class="s">live</span></div></div>
+      <div class="dcmd">chase anyone quiet for 3 days<span class="car"> |</span></div>`;
+    document.body.appendChild(dh); n.dashEl=dh; }
+});
+
+// ---- diagram layer: bespoke per-step drawing anchored to the real node in the graph ----
+const SVGNS='http://www.w3.org/2000/svg';
+const diaglayer=document.createElementNS(SVGNS,'svg'); diaglayer.id='diaglayer';
+function sizeDiag(){ diaglayer.setAttribute('width',innerWidth); diaglayer.setAttribute('height',innerHeight); }
+sizeDiag(); addEventListener('resize',sizeDiag); document.body.appendChild(diaglayer);
+const arcPath=(cx,cy,r,a0,a1)=>{ const x0=cx+r*Math.cos(a0*Math.PI/180),y0=cy+r*Math.sin(a0*Math.PI/180),x1=cx+r*Math.cos(a1*Math.PI/180),y1=cy+r*Math.sin(a1*Math.PI/180),lg=Math.abs(a1-a0)>180?1:0; return `M${x0.toFixed(1)},${y0.toFixed(1)} A${r},${r} 0 ${lg} 1 ${x1.toFixed(1)},${y1.toFixed(1)}`; };
+nodes.forEach(n=>{
+  const spec=n.diagSpec; if(!spec) return;
+  const g=document.createElementNS(SVGNS,'g'); g.style.opacity=0; diaglayer.appendChild(g); n.diagG=g;
+  const mk=(tag,cls)=>{ const e=document.createElementNS(SVGNS,tag); if(cls)e.setAttribute('class',cls); g.appendChild(e); return e; };
+  if(spec.limbs){
+    n.limbEls=spec.limbs.map(L=>{
+      const o={L, path:mk('path','limb'), tx:mk('text')};
+      if(spec.kind==='loop') o.ret=mk('path','ret');
+      if(spec.kind==='people'){ o.head=mk('circle','ep'); o.head.setAttribute('r','5'); o.sh=mk('path','sh'); }
+      else { o.ep=mk('circle','ep'); o.ep.setAttribute('r','3.4'); }
+      o.tx.textContent=L.label||''; return o;
+    });
+    if(spec.newLimb){ n.newLimbEl={path:mk('path','limb dashed'), tx:mk('text')}; n.newLimbEl.tx.textContent=spec.newLimb.label||''; }
+  } else if(spec.kind==='panel'){
+    n.dia={ wire:mk('path','limb'), box:mk('rect','pbox'), dials:[0,1,2].map(()=>mk('path','pdial')), tog:mk('rect','ptog'), knob:mk('circle','pknob'), t1:mk('text') };
+    n.dia.t1.textContent='live, changed in plain language'; n.dia.t1.setAttribute('text-anchor','middle');
+  } else if(spec.kind==='repair'){
+    n.dia={ good:mk('path','limb'), goodEp:mk('circle','ep'), seg:mk('path','limb'), brk:mk('path','limb dashed'), mark:mk('path','brk'), pulse:mk('circle','ep'), t1:mk('text'), t2:mk('text') };
+    n.dia.goodEp.setAttribute('r','3.4'); n.dia.pulse.setAttribute('r','3.2');
+    n.dia.t1.textContent='running fine'; n.dia.t2.textContent='spots decay, repairs it';
+    n.dia.t1.setAttribute('text-anchor','middle'); n.dia.t2.setAttribute('text-anchor','middle');
+  } else if(spec.kind==='gate'){
+    n.dia={ ff:[mk('circle','ffield'),mk('circle','ffield'),mk('ellipse','ffield'),mk('ellipse','ffield')], out:mk('path','limb'), outEp:mk('circle','ep'), ret:mk('path','ret'), shield:mk('path','shield'), shieldI:mk('path','shield-i'), t1:mk('text'), t2:mk('text') };
+    n.dia.outEp.setAttribute('r','3.4');
+    n.dia.t1.textContent='everyone writes in'; n.dia.t2.textContent='reads scoped to you';
+    n.dia.t1.setAttribute('text-anchor','middle'); n.dia.t2.setAttribute('text-anchor','middle');
+  }
+});
+
+// ---- wiring through the nodes ----
+const wireMat=new THREE.LineBasicMaterial({color:0xDB9145, transparent:true, opacity:.5, blending:THREE.AdditiveBlending, depthWrite:false});
+{ const wl=new THREE.Line(new THREE.BufferGeometry().setFromPoints(nodes.map(n=>n.p)), wireMat); wl.renderOrder=0; scene.add(wl); }
+
+// ---- brain tissue + a live firing network (real neural activity) ----
+const tissuePts=[];
+nodes.forEach(n=>{ for(let j=0;j<(isM?10:20);j++) tissuePts.push(n.p.clone().add(new THREE.Vector3((Math.random()-.5)*82,(Math.random()-.5)*82,(Math.random()-.5)*82))); });
+for(let j=0;j<(isM?48:110);j++) tissuePts.push(new THREE.Vector3((Math.random()-.5)*244,(Math.random()-.5)*190,(Math.random()-.5)*244).add(centroid));
+const fireNodes=nodes.map(n=>n.p.clone()).concat(tissuePts);
+const NN=fireNodes.length, HUBS=nodes.length;
+const adj=fireNodes.map(()=>[]);
+for(let i=0;i<NN;i++){ const near=fireNodes.map((p,j)=>[j,fireNodes[i].distanceToSquared(p)]).filter(a=>a[0]!==i).sort((a,b)=>a[1]-b[1]); const kk=i<HUBS?4:3; for(let m=0;m<kk;m++){ const j=near[m][0]; if(!adj[i].includes(j))adj[i].push(j); if(!adj[j].includes(i))adj[j].push(i); } }
+const dendMat=new THREE.LineBasicMaterial({color:0xECE6DA,transparent:true,opacity:.09,blending:THREE.AdditiveBlending,depthWrite:false});
+{ const segs=[],seen=new Set(); for(let i=0;i<NN;i++)for(const j of adj[i]){ const key=Math.min(i,j)+'_'+Math.max(i,j); if(seen.has(key))continue; seen.add(key); segs.push(fireNodes[i],fireNodes[j]); } const dl=new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(segs), dendMat); dl.renderOrder=0; scene.add(dl); }
+const tGeo=new THREE.BufferGeometry(), tPos=new Float32Array(tissuePts.length*3), tCol=new Float32Array(tissuePts.length*3);
+tissuePts.forEach((p,i)=>{ tPos[i*3]=p.x;tPos[i*3+1]=p.y;tPos[i*3+2]=p.z; tCol[i*3]=.26;tCol[i*3+1]=.25;tCol[i*3+2]=.23; });
+tGeo.setAttribute('position',new THREE.BufferAttribute(tPos,3)); tGeo.setAttribute('color',new THREE.BufferAttribute(tCol,3));
+const tisMat=new THREE.PointsMaterial({size:2.5,sizeAttenuation:true,vertexColors:true,transparent:true,opacity:.85,depthWrite:false,map:inkGlow,blending:THREE.AdditiveBlending});
+scene.add(new THREE.Points(tGeo, tisMat));
+const flashes=new Float32Array(NN); let signals=[], nextFire=0;
+function fireFrom(idx,e){ if(e<0.14)return; const o=adj[idx]; if(!o.length)return; const c=e>0.7&&o.length>2&&Math.random()<0.4?2:1; for(let k=0;k<c;k++) signals.push({a:idx,b:o[(Math.random()*o.length)|0],p:0,sp:2.6+Math.random()*2.2,e}); }
+const SIGMAX=48, sigSp=[]; for(let i=0;i<SIGMAX;i++){ const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:clayGlow,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,opacity:0})); sp.scale.setScalar(5); scene.add(sp); sigSp.push(sp); }
+
+// ---- particle cloud filling the cluster ----
+{
+  const N=isM?1000:2800, arr=new Float32Array(N*3), col=new Float32Array(N*3);
+  const c1=new THREE.Color(0xECE6DA), c2=new THREE.Color(0xDB9145);
+  for(let i=0;i<N;i++){
+    const r=Math.cbrt(Math.random())*190, a=Math.random()*Math.PI*2, b=Math.acos(2*Math.random()-1);
+    arr[i*3]=centroid.x+r*Math.sin(b)*Math.cos(a); arr[i*3+1]=centroid.y+r*Math.sin(b)*Math.sin(a); arr[i*3+2]=centroid.z+r*Math.cos(b);
+    const c=Math.random()<.05?c2:c1; col[i*3]=c.r; col[i*3+1]=c.g; col[i*3+2]=c.b;
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(arr,3)); g.setAttribute('color',new THREE.BufferAttribute(col,3));
+  scene.add(new THREE.Points(g, new THREE.PointsMaterial({size:1.6, sizeAttenuation:true, vertexColors:true, transparent:true, opacity:.55, depthWrite:false, map:inkGlow, blending:THREE.AdditiveBlending})));
+}
+
+// ---- camera keyframes: intro (far) -> each node (framed) -> outro (far) ----
+const up=new THREE.Vector3(0,1,0), dir=new THREE.Vector3();
+const cCenter=new THREE.Vector3(centroid.x, centroid.y+8, centroid.z+440);
+const keys=[
+  { pos:cCenter.clone(), target:centroid.clone() },                                                              // 0 idle centre, turning on its own
+  { pos:new THREE.Vector3(centroid.x+16, centroid.y+6, centroid.z+318), target:centroid.clone() },               // 1 hero, brain parks right (view offset), text left
+  { pos:new THREE.Vector3(centroid.x+12, centroid.y+5, centroid.z+300), target:centroid.clone() },               // 2 the moat, whole brain, parked right
+];
+const NODE_START=keys.length;
+nodes.forEach(n=>{
+  dir.copy(n.p).sub(centroid).normalize();
+  const pos=n.p.clone().add(dir.clone().multiplyScalar(68));
+  keys.push({ pos:pos.clone(), target:n.p.clone() });   // arrive, framed centre
+  keys.push({ pos:pos.clone(), target:n.p.clone() });   // hold here while you read
+});
+const PROOF_KI=keys.length;
+keys.push({ pos:new THREE.Vector3(centroid.x-10, centroid.y+6, centroid.z+322), target:centroid.clone() });      // proof, pull back to whole brain, parked left
+const WORK_KI=keys.length;
+keys.push({ pos:new THREE.Vector3(centroid.x+14, centroid.y-3, centroid.z+300), target:centroid.clone() });      // how I work, parked right
+keys.push({ pos:cCenter.clone(), target:centroid.clone() });   // outro, whole brain behind the contact
+const SEG=keys.length-1;
+
+// ---- parking: every content station pushes the brain to one side, content fills the rest ----
+const MSY=0.52;   // on mobile every station parks the brain up top, content fills the bottom
+const parks=[
+  {c:1,       sx:isM?0:0.42, sy:isM?MSY:0.04, w:0.9},   // hero
+  {c:2,       sx:isM?0:0.42, sy:isM?MSY:0.05, w:0.9},   // moat
+  {c:PROOF_KI,sx:0,          sy:isM?MSY:0,    w:0.9},   // proof (brain centred, benefit bubbles ring it)
+  {c:WORK_KI, sx:isM?0:0.40, sy:isM?MSY:0.0,  w:0.9},   // how I work
+];
+nodes.forEach((n,k)=>parks.push({c:NODE_START+2*k+0.5, sx:isM?0:n.sx, sy:isM?MSY:n.sy, w:1.1}));
+
+// ---- framing-beat panels ----
+function mkPanel(cls, html){ const p=document.createElement('div'); p.className='panel '+cls; p.innerHTML=html; document.body.appendChild(p); return p; }
+const moatPanel=mkPanel('l', `<div class="ey">The moat</div><h2>The part nobody can copy</h2><div class="lead">The clever robot part is cheap, and everyone gets the same one next year. The real moat is the pooled memory of everything your business has learned, and it only grows in one place, inside your business. A competitor can buy your model tomorrow. They can't buy that.</div><div class="deep">Models commoditise on a yearly cycle. The connected system sitting on your own structured, pooled data is the asset that appreciates while the model underneath it gets cheaper.</div>`);
+// benefit-led, drawn from different industries to show range
+const proofBubblesData=[
+ ['13%','6%',"An AI receptionist that answers and books calls around the clock"],
+ ['12%','60%',"A hospital phone line triaging patients on its own"],
+ ['39%','4%',"1,000+ invoices reprocessed into clean expense and profit data"],
+ ['42%','65%',"A cleaning business pulling client leads straight off its new site"],
+ ['66%','11%',"A backyard sized up for a pool in minutes, a job that eats four hours by hand"],
+ ['67%','56%',"hüm, a voice-first platform shipped end to end"],
+ ['81%','33%',"Websites built to be found by customers and by AI"],
+];
+const proofBubbles=document.createElement('div'); proofBubbles.id='proofbubbles';
+proofBubbles.innerHTML='<div class="ph">The proof · real systems running now, across industries</div>';
+proofBubblesData.forEach((b,i)=>{ const d=document.createElement('div'); d.className='bub'; d.style.top=b[0]; d.style.left=b[1]; d.style.transitionDelay=(i*0.08)+'s'; d.textContent=b[2]; proofBubbles.appendChild(d); });
+document.body.appendChild(proofBubbles);
+const workItems=[
+ ['Human in the loop',"Nothing goes out in your name until you say so. It writes the draft and waits for your yes."],
+ ['One brain, every doorway',"The same brain picks up the phone, answers your WhatsApp, drafts your email and holds your web chat. Start something on a call and it carries straight on over text."],
+ ['Owned and portable',"It lives in your accounts and walks out the door with you. Swap the model or any single tool for a better one with a sentence."],
+ ['Shows its working',"Every action logged with the reason behind it. Open the trail any time and see exactly why it did what it did."],
+ ['Knows what it doesn\'t know',"When it hasn't got enough to make the call, it says so out loud. No confident guesses that cost you later."],
+];
+const workPanel=mkPanel('l list', `<div class="ey">How I work</div><h2>Every question about trusting this, already answered</h2><div class="plist">${workItems.map(x=>`<div class="it"><div class="k">${x[0]}</div><div class="t">${x[1]}</div></div>`).join('')}</div>`);
+const turnBeat=document.createElement('div'); turnBeat.className='beat'; turnBeat.textContent='A chatbot here, a booking widget there, both blind to each other. Wire them into one brain that shares a single memory.'; document.body.appendChild(turnBeat);
+
+let targetT=0, currentT=0;
+addEventListener('scroll',()=>{ const max=document.documentElement.scrollHeight-innerHeight; targetT=max>0?Math.min(1,Math.max(0,scrollY/max)):0; },{passive:true});
+addEventListener('resize',()=>{ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); });
+
+const smooth=x=>x*x*(3-2*x);
+// content shows only once settled at a station, fully hidden while flying, so nothing overlaps mid-transition
+const vis=(near,lo=0.5,hi=0.9)=>{ const t=(near-lo)/(hi-lo); return t<=0?0:t>=1?1:smooth(t); };
+const pA=new THREE.Vector3(), tA=new THREE.Vector3(), v=new THREE.Vector3();
+const contact=document.getElementById('contact'), heroEl=document.getElementById('hero');
+// rotate the real testimonials at the close
+const testis=[
+  {q:'“Since we launched I\'ve had numerous enquiries and client leads, purely from my website traffic.”', a:'<b>Amie E.</b><i>·</i>cleaning business<i>·</i>5.0 on Google'},
+  {q:'“He helped me reprocess more than 1,000 invoices with AI. I was overwhelmed, by hand it would have taken me forever.”', a:'<b>Lory Caccamo</b><i>·</i>invoice automation'},
+];
+const cq=document.getElementById('cquote');
+const setTesti=k=>{ cq.innerHTML=testis[k].q+'<span class="ca">'+testis[k].a+'</span>'; };
+let ti=0;
+setInterval(()=>{ cq.style.opacity=0; setTimeout(()=>{ ti=(ti+1)%testis.length; setTesti(ti); cq.style.opacity=1; }, 500); }, 6500);
+
+let clock=0;
+function animate(){
+  clock+=1/60;
+  currentT+=(targetT-currentT)*0.055;
+  const s=Math.min(SEG-1e-4, Math.max(0, currentT*SEG));
+  const i=Math.floor(s); const f=smooth(s-i);
+  pA.copy(keys[i].pos).lerp(keys[i+1].pos, f);
+  tA.copy(keys[i].target).lerp(keys[i+1].target, f);
+  // how settled we are at any station (1 = fully parked and still)
+  let dwell=0; for(const P of parks){ const nk=1-Math.abs(s-P.c)/P.w; if(nk>dwell)dwell=nk; } dwell=Math.max(0,Math.min(1,dwell));
+  const move=1-smooth(dwell);   // ambient motion only while travelling, dead still at a station
+  // gentle rotation on the opening brain, fades out before the hero beat
+  const introAmt=Math.max(0, 1 - s/0.85);
+  if(introAmt>0.001){ const ang=clock*0.12*introAmt; const dx=pA.x-centroid.x, dz=pA.z-centroid.z, ca=Math.cos(ang), sa=Math.sin(ang); pA.x=centroid.x+dx*ca-dz*sa; pA.z=centroid.z+dx*sa+dz*ca; }
+  pA.x+=Math.sin(clock*0.3)*2.0*move; pA.y+=Math.cos(clock*0.24)*1.6*move;   // life while flying, still at rest
+  camera.position.copy(pA); camera.up.copy(up); camera.lookAt(tA);
+  // every station parks the brain to one side via a view offset (content fills the rest)
+  let ox=0,oy=0;
+  for(const P of parks){ const nk=Math.max(0,1-Math.abs(s-P.c)/P.w); if(nk>0.02){ const e=smooth(nk); ox+=e*P.sx; oy+=e*P.sy; } }
+  if(Math.abs(ox)>0.002||Math.abs(oy)>0.002) camera.setViewOffset(innerWidth,innerHeight, -ox*innerWidth*0.5, oy*innerHeight*0.5, innerWidth, innerHeight);
+  else camera.clearViewOffset();
+  // firing: busy from afar, quiet when submersed in a node
+  let atNode=0; for(let k=0;k<nodes.length;k++){ const nk=1-Math.abs(s-(NODE_START+0.5+2*k))/1.1; if(nk>atNode)atNode=nk; } atNode=Math.max(0,atNode);
+  const activity=0.06+(1-atNode)*0.94;   // near-frozen when submerged in a station
+  // quiet the surrounding mesh as you zoom into a node, so the element reads clean
+  tisMat.opacity=0.85*(1-atNode*0.62); dendMat.opacity=0.085*(1-atNode*0.82); wireMat.opacity=0.5*(1-atNode*0.5);
+  if(clock>nextFire){ nextFire=clock+(0.11+Math.random()*0.13)/activity; fireFrom((Math.random()*NN)|0,1); }
+  for(let fi=0;fi<NN;fi++){ if(flashes[fi]>0) flashes[fi]-=flashes[fi]*0.12+0.014; }
+  for(let si=signals.length-1;si>=0;si--){ const S=signals[si]; S.p+=S.sp/60; if(S.p>=1){ flashes[S.b]=Math.min(1,flashes[S.b]+0.9*S.e); if(Math.random()<0.7*S.e*activity) fireFrom(S.b,S.e*0.72); signals.splice(si,1); } }
+  for(let si=0;si<SIGMAX;si++){ const S=signals[si]; if(S){ sigSp[si].position.lerpVectors(fireNodes[S.a],fireNodes[S.b],S.p); sigSp[si].material.opacity=0.5*S.e*(0.35+activity*0.65); } else sigSp[si].material.opacity=0; }
+  for(let ti=0;ti<tissuePts.length;ti++){ const fl=flashes[HUBS+ti], vv=Math.min(1,0.26+fl*1.6); tCol[ti*3]=0.86*vv; tCol[ti*3+1]=0.82*vv; tCol[ti*3+2]=0.72*vv; }
+  tGeo.attributes.color.needsUpdate=true;
+
+  // node labels + rail (node k is keyframe index k+1)
+  nodes.forEach((n,k)=>{
+    const ki=NODE_START+0.5+2*k; const near=Math.max(0, 1-Math.abs(s-ki)/1.1);
+    // the active node swells into the hero of its frame
+    const ig=Math.max(near, Math.max(0, 1-Math.abs(s-1.0)/2.0)*0.7);
+    const hf=flashes[k]||0;
+    const br=1+Math.sin(clock*1.2+k)*0.05*move+hf*0.35;
+    const gd=(n.diagSpec&&n.diagSpec.kind==='gate')?(1-near*0.6):1;
+    n.glow.scale.setScalar(30*(1+near*1.3)*br); n.core.scale.setScalar(10*(1+near*1.3)*br);
+    n.glow.material.opacity=(0.14+ig*0.8+hf*0.35)*gd; n.core.material.opacity=(0.16+ig*0.82+hf*0.5)*gd;
+    if(near>0.05 && !n.diag){ v.copy(n.p).project(camera); const infront=v.z<1; if(infront){ n.el.style.left=((v.x*.5+.5)*innerWidth)+'px'; n.el.style.top=((-v.y*.5+.5)*innerHeight+58)+'px'; n.el.style.opacity=vis(near); } else n.el.style.opacity=0; }
+    else n.el.style.opacity=0;
+    // per-step diagram drawn straight out of the real node in the graph
+    if(n.diagG){ const dv=vis(near); n.diagG.style.opacity=dv;
+      if(dv>0.001){ v.copy(n.p).project(camera); const hx=(v.x*.5+.5)*innerWidth, hy=(-v.y*.5+.5)*innerHeight, spec=n.diagSpec;
+        if(n.limbEls){ for(const E of n.limbEls){ const ex=hx+E.L.dx, ey=hy+E.L.dy, left=E.L.dx<0, mx=(hx+ex)/2, my=(hy+ey)/2; let nx=ey-hy, ny=-(ex-hx); const ln=Math.hypot(nx,ny)||1; nx/=ln; ny/=ln;
+            E.path.setAttribute('d',`M${hx.toFixed(1)},${hy.toFixed(1)} Q${(mx+nx*13).toFixed(1)},${(my+ny*13).toFixed(1)} ${ex.toFixed(1)},${ey.toFixed(1)}`);
+            if(E.ep){ E.ep.setAttribute('cx',ex.toFixed(1)); E.ep.setAttribute('cy',ey.toFixed(1)); }
+            if(E.head){ E.head.setAttribute('cx',ex.toFixed(1)); E.head.setAttribute('cy',(ey-4).toFixed(1)); E.sh.setAttribute('d',`M${(ex-8).toFixed(1)},${(ey+9).toFixed(1)} Q${ex.toFixed(1)},${(ey-2).toFixed(1)} ${(ex+8).toFixed(1)},${(ey+9).toFixed(1)}`); }
+            if(E.ret){ E.ret.setAttribute('d',`M${ex.toFixed(1)},${ey.toFixed(1)} Q${(mx-nx*24).toFixed(1)},${(my-ny*24).toFixed(1)} ${hx.toFixed(1)},${hy.toFixed(1)}`); }
+            E.tx.setAttribute('text-anchor',left?'end':'start'); E.tx.setAttribute('x',(left?ex-12:ex+12).toFixed(1)); E.tx.setAttribute('y',(ey+(E.head?20:4)).toFixed(1)); }
+          if(n.newLimbEl){ const L=spec.newLimb, ex=hx+L.dx, ey=hy+L.dy, left=L.dx<0; n.newLimbEl.path.setAttribute('d',`M${hx.toFixed(1)},${hy.toFixed(1)} L${ex.toFixed(1)},${ey.toFixed(1)}`); n.newLimbEl.tx.setAttribute('text-anchor',left?'end':'start'); n.newLimbEl.tx.setAttribute('x',(left?ex-12:ex+12).toFixed(1)); n.newLimbEl.tx.setAttribute('y',(ey+4).toFixed(1)); }
+        } else if(spec.kind==='panel'){ const d=n.dia, px=hx+spec.px, py=hy+spec.py;
+          d.wire.setAttribute('d',`M${hx.toFixed(1)},${hy.toFixed(1)} L${(px+180).toFixed(1)},${(py+48).toFixed(1)}`);
+          d.box.setAttribute('x',px.toFixed(1)); d.box.setAttribute('y',py.toFixed(1)); d.box.setAttribute('width',180); d.box.setAttribute('height',96); d.box.setAttribute('rx',8);
+          d.dials.forEach((dl,di)=>{ dl.setAttribute('d',arcPath(px+34+di*56, py+38, 15, 130, 270+di*22)); });
+          d.tog.setAttribute('x',(px+52).toFixed(1)); d.tog.setAttribute('y',(py+64).toFixed(1)); d.tog.setAttribute('width',44); d.tog.setAttribute('height',16); d.tog.setAttribute('rx',8);
+          d.knob.setAttribute('cx',(px+88).toFixed(1)); d.knob.setAttribute('cy',(py+72).toFixed(1)); d.knob.setAttribute('r',6);
+          d.t1.setAttribute('x',(px+90).toFixed(1)); d.t1.setAttribute('y',(py+120).toFixed(1));
+        } else if(spec.kind==='repair'){ const d=n.dia;
+          const gx=hx+206, gy=hy-88; d.good.setAttribute('d',`M${hx.toFixed(1)},${hy.toFixed(1)} Q${(hx+110).toFixed(1)},${(hy-38).toFixed(1)} ${gx.toFixed(1)},${gy.toFixed(1)}`); d.goodEp.setAttribute('cx',gx.toFixed(1)); d.goodEp.setAttribute('cy',gy.toFixed(1));
+          const bx=hx+214, by=hy+78;
+          d.seg.setAttribute('d',`M${hx.toFixed(1)},${hy.toFixed(1)} L${(hx+92).toFixed(1)},${(hy+34).toFixed(1)}`);
+          d.brk.setAttribute('d',`M${(hx+124).toFixed(1)},${(hy+46).toFixed(1)} L${bx.toFixed(1)},${by.toFixed(1)}`);
+          d.mark.setAttribute('d',`M${(hx+102).toFixed(1)},${(hy+26).toFixed(1)} L${(hx+114).toFixed(1)},${(hy+54).toFixed(1)}`);
+          d.pulse.setAttribute('cx',(hx+108).toFixed(1)); d.pulse.setAttribute('cy',(hy+40).toFixed(1));
+          d.t1.setAttribute('x',(gx+12).toFixed(1)); d.t1.setAttribute('y',(gy+4).toFixed(1));
+          d.t2.setAttribute('x',(bx+12).toFixed(1)); d.t2.setAttribute('y',(by+4).toFixed(1));
+        } else if(spec.kind==='gate'){ const d=n.dia, R=112;
+          d.ff[0].setAttribute('cx',hx.toFixed(1)); d.ff[0].setAttribute('cy',hy.toFixed(1)); d.ff[0].setAttribute('r',R);
+          d.ff[1].setAttribute('cx',hx.toFixed(1)); d.ff[1].setAttribute('cy',hy.toFixed(1)); d.ff[1].setAttribute('r',(R*0.6).toFixed(1));
+          d.ff[2].setAttribute('cx',hx.toFixed(1)); d.ff[2].setAttribute('cy',hy.toFixed(1)); d.ff[2].setAttribute('rx',(R*0.34).toFixed(1)); d.ff[2].setAttribute('ry',R);
+          d.ff[3].setAttribute('cx',hx.toFixed(1)); d.ff[3].setAttribute('cy',hy.toFixed(1)); d.ff[3].setAttribute('rx',(R*0.68).toFixed(1)); d.ff[3].setAttribute('ry',R);
+          const ox=hx-70, oy=hy+156; d.out.setAttribute('d',`M${hx.toFixed(1)},${hy.toFixed(1)} Q${(hx-44).toFixed(1)},${(hy+86).toFixed(1)} ${ox.toFixed(1)},${oy.toFixed(1)}`); d.outEp.setAttribute('cx',ox.toFixed(1)); d.outEp.setAttribute('cy',oy.toFixed(1));
+          const rx=hx+70, ry=hy+176; d.ret.setAttribute('d',`M${hx.toFixed(1)},${hy.toFixed(1)} Q${(hx+44).toFixed(1)},${(hy+96).toFixed(1)} ${rx.toFixed(1)},${ry.toFixed(1)}`);
+          d.shield.setAttribute('d',`M${hx.toFixed(1)},${(hy-26).toFixed(1)} L${(hx+17).toFixed(1)},${(hy-17).toFixed(1)} L${(hx+17).toFixed(1)},${(hy+4).toFixed(1)} Q${(hx+17).toFixed(1)},${(hy+19).toFixed(1)} ${hx.toFixed(1)},${(hy+27).toFixed(1)} Q${(hx-17).toFixed(1)},${(hy+19).toFixed(1)} ${(hx-17).toFixed(1)},${(hy+4).toFixed(1)} L${(hx-17).toFixed(1)},${(hy-17).toFixed(1)} Z`);
+          d.shieldI.setAttribute('d',`M${(hx-7).toFixed(1)},${(hy+1).toFixed(1)} L${(hx-1).toFixed(1)},${(hy+8).toFixed(1)} L${(hx+9).toFixed(1)},${(hy-8).toFixed(1)}`);
+          d.t1.setAttribute('x',ox.toFixed(1)); d.t1.setAttribute('y',(oy+22).toFixed(1));
+          d.t2.setAttribute('x',rx.toFixed(1)); d.t2.setAttribute('y',(ry+22).toFixed(1));
+        }
+      } }
+    n.panel.style.opacity=vis(near);
+    if(n.dashEl) n.dashEl.style.opacity=vis(near);
+    n.panel.style.transform=`translateY(calc(-50% + ${(s-ki)*20}px))`;
+    n.dot.classList.toggle('on', near>0.5);
+  });
+
+  // hero text reveal during the entry pan, gone before the moat
+  heroEl.style.opacity = Math.max(0,Math.min(1,(s-0.5)/0.4)) * (1 - Math.max(0,Math.min(1,(s-1.05)/0.45)));
+  // framing-beat panels, same settle gate so nothing overlaps mid-flight
+  moatPanel.style.opacity = vis(1-Math.abs(s-2)/0.9);
+  { const pv=vis(1-Math.abs(s-PROOF_KI)/0.9); proofBubbles.style.opacity=pv; proofBubbles.classList.toggle('on', pv>0.4); }
+  workPanel.style.opacity = vis(1-Math.abs(s-WORK_KI)/0.9);
+  turnBeat.style.opacity = vis(1-Math.abs(s-2.62)/0.3)*0.95;
+  // contact box on the final pull-out
+  const co=Math.max(0,(s-(SEG-0.85))/0.7); contact.style.opacity=Math.min(1,co); contact.style.pointerEvents=co>0.6?'auto':'none';
+
+  renderer.render(scene,camera);
+  requestAnimationFrame(animate);
+}
+animate();
+}
+</script>
 </body>
 </html>

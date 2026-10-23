@@ -32,7 +32,7 @@ Proof rail:
 - $7K/wk → $2.2M/yr · the Straddie cafe I ran
 - 1,000+ · documents processed with AI across the portfolio
 - 14 days · to your first build
-- 5 to 35 · staff hired, trained and led at the cafe (swapped out "5.0 on Google": that is Amie's rating, not yours)
+- 5 · happy business owners so far, and counting
 
 Headline alternates:
 - A (chosen): "I build the systems that get you home for dinner." Concrete picture, outcome, his voice.

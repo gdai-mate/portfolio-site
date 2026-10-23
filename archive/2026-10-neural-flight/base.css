@@ -1,0 +1,82 @@
+/* ============================================================
+   asgardbishop.com — SHARED DESIGN SYSTEM (dark, creative)
+   Direction: dark editorial gallery, not dark-tech. Elegant
+   high-contrast serif against machine mono, one warm accent,
+   hairlines, real restraint. NO Fraunces (AI tell). Warm-dark
+   ground, never cold blue-black. No em dashes anywhere.
+   ============================================================ */
+
+:root{
+  --bg:#0F0D0B;            /* warm near-black ground */
+  --bg-2:#15120E;          /* faint raised panel */
+  --bg-3:#1B1712;          /* hover / deeper panel */
+  --text:#ECE6DA;          /* warm off-white, never pure */
+  --text-soft:#A79E8E;     /* secondary */
+  --text-faint:#6E665A;    /* captions, mono labels */
+  --hairline:rgba(236,230,218,.12);
+  --hairline-2:rgba(236,230,218,.06);
+
+  /* one accent, warm clay-amber, luminous on dark, used once per view */
+  --clay:#DB9145;
+  --clay-deep:#B9702B;
+
+  --serif:'Cormorant Garamond',Georgia,serif;  /* elegant high-contrast, his personal face */
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --hand:'Caveat',cursive;
+}
+
+*,*::before,*::after{ margin:0; padding:0; box-sizing:border-box; }
+
+html{ background:var(--bg); scroll-behavior:smooth; }
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* type */
+h1,h2,h3{ font-family:var(--serif); font-weight:500; color:var(--text); line-height:1.02; letter-spacing:.002em; }
+h1{ font-size:clamp(46px,7vw,104px); }
+h2{ font-size:clamp(32px,4.4vw,60px); }
+h3{ font-size:clamp(22px,2.4vw,30px); }
+em{ font-style:italic; }
+.accent{ color:var(--clay); }
+a{ color:inherit; text-decoration:none; }
+
+/* furniture */
+.wrap{ max-width:1180px; margin:0 auto; padding:0 clamp(24px,5vw,48px); }
+.mono{ font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--text-faint); }
+.kicker{ font-family:var(--mono); font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--text-faint); display:inline-flex; align-items:center; gap:12px; }
+.kicker .ln{ width:36px; height:1px; background:var(--hairline); display:inline-block; }
+.scribble{ font-family:var(--hand); font-size:27px; color:var(--clay); transform:rotate(-4deg); display:inline-block; }
+
+.section{ padding:clamp(90px,13vh,150px) 0; }
+.section + .section{ border-top:1px solid var(--hairline); }
+.sec-lede{ color:var(--text-soft); font-size:clamp(16px,1.6vw,19px); max-width:56ch; margin-top:18px; }
+
+/* ledger + figure plate (used later by systems section) */
+.ledger .row{ display:flex; justify-content:space-between; gap:20px; padding:13px 2px; border-bottom:1px solid var(--hairline-2); font-size:14px; font-family:var(--mono); letter-spacing:.02em; }
+.ledger .row .v{ color:var(--text); }
+.ledger .row .k{ color:var(--text-faint); }
+
+.plate{ position:relative; border:1px solid var(--hairline); background:linear-gradient(160deg,rgba(236,230,218,.02),transparent); }
+.plate .plate-num{ position:absolute; top:-8px; left:18px; background:var(--bg); padding:0 9px; font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--text-faint); }
+.plate .plate-cap{ padding:12px 18px 16px; font-family:var(--hand); font-size:19px; color:var(--text-soft); }
+
+/* buttons */
+.btn{ display:inline-flex; align-items:center; gap:9px; background:var(--text); color:var(--bg);
+  font-family:var(--sans); font-weight:600; font-size:15px; padding:14px 28px; border:none; cursor:pointer;
+  transition:transform .15s ease, background-color .2s; }
+.btn:hover{ transform:translateY(-1px); background:#fff; }
+.btn-ghost{ background:transparent; color:var(--text); border:1px solid var(--hairline); }
+.btn-ghost:hover{ background:transparent; border-color:var(--text); }
+
+.btn:focus-visible,a:focus-visible,button:focus-visible{ outline:2.5px solid var(--clay); outline-offset:2px; }
+.sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+
+@media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition:none !important; } }

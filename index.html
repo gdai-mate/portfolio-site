@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Asgard Bishop | AI systems that get small business owners home for dinner</title>
-<meta name="description" content="I build AI into Aussie small businesses so quotes, invoices and missed calls stop eating your nights. Took a Straddie cafe from $7K a week to $2.2M a year. Now I build the systems through G'dai Mate.">
+<meta name="description" content="I build AI into Aussie small businesses so the quotes and missed calls stop eating your nights. Helped turn a Straddie cafe losing money into a restaurant doing $2.2M a year. Now I build the systems through G'dai Mate.">
 <link rel="canonical" href="https://asgardbishop.com/">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Asgard Bishop | I build the systems that get you home for dinner">
@@ -168,14 +168,28 @@ section{padding:var(--sec) 0}
 .guide .story p{color:var(--ink-2);margin-bottom:24px;font-size:18px;line-height:1.65;max-width:62ch}
 .guide .story p:last-child{margin-bottom:0}
 .guide .story p strong{color:var(--ink);font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.1em;line-height:1;letter-spacing:-.005em;font-variant-numeric:lining-nums}
-.quotes{display:flex;flex-direction:column;gap:48px;padding-top:1px;position:sticky;top:120px}
-
-.q blockquote{font-family:var(--serif);font-weight:500;font-size:clamp(25px,2.3vw,32px);line-height:1.26;letter-spacing:-.008em;text-indent:-.42em;font-variant-numeric:lining-nums}
-.q figcaption{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin-top:22px;font-size:14px;color:var(--ink-3);line-height:1.5}
-.q figcaption b{color:var(--ink);font-weight:600;font-size:15px}
-.q figcaption b::after{content:"";display:inline-block;width:18px;height:1px;background:var(--ink-3);vertical-align:middle;margin-left:12px}
-.q + .q{padding-top:48px;border-top:1px solid var(--rule)}
-@media (max-width:860px){.quotes{position:static}.guide .grid{grid-template-columns:1fr;row-gap:56px}.guide .grid > .kicker{margin-bottom:-28px}.quotes{padding-top:0}}
+.crew{position:sticky;top:120px;margin:0}
+.crew .shot{position:relative;aspect-ratio:3/2;background:#1b1b1a;overflow:hidden}
+.crew img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.crew .arrow{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:var(--pop);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 2px rgba(0,0,0,.6))}
+.crew .arrow path{vector-effect:non-scaling-stroke}
+.crew .me{position:absolute;left:19%;top:4%;background:var(--pop);color:var(--ink);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;line-height:1}
+.crew figcaption{display:flex;justify-content:space-between;gap:16px;margin-top:14px;padding-top:12px;border-top:1px solid var(--ink);font-family:var(--mono);font-size:12px;line-height:16px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-lab)}
+@media (max-width:860px){.crew{position:static}.crew .me{font-size:10.5px;padding:5px 8px}}
+.said{border-bottom:1px solid var(--rule);padding:var(--sec-in) 0}
+.said .kicker{margin-bottom:20px}
+.said h2{font-family:var(--serif);font-weight:500;font-size:var(--t-h2s);line-height:1.05;letter-spacing:-.018em;margin-bottom:clamp(36px,4vw,56px);max-width:16ch}
+.said-row{display:flex;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.said-track{display:flex;flex:none;animation:saidloop 80s linear infinite}
+.said-card{flex:0 0 340px;margin-right:20px;display:flex;flex-direction:column;border:1px solid var(--ink);background:var(--paper);padding:28px 26px 22px}
+.said-card blockquote{font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.3;letter-spacing:-.005em;color:var(--ink);flex:1;margin:0 0 22px}
+.said-card figcaption{font-size:14px;color:var(--ink-3);line-height:1.5;padding-top:14px;border-top:1px solid var(--rule)}
+.said-card figcaption b{display:block;color:var(--ink);font-weight:600;font-size:15px}
+@keyframes saidloop{to{transform:translateX(-100%)}}
+@media (hover:hover){.said-row:hover .said-track{animation-play-state:paused}}
+@media (max-width:560px){.said-card{flex-basis:280px;padding:24px 20px 18px}.said-card blockquote{font-size:20px}}
+@media (prefers-reduced-motion:reduce){.said-track{animation:none}.said-track[aria-hidden]{display:none}.said-row{overflow-x:auto;mask-image:none;-webkit-mask-image:none}}
+@media (max-width:860px){.guide .grid{grid-template-columns:1fr;row-gap:56px}.guide .grid > .kicker{margin-bottom:-28px}}
 
 /* plan: four-step row + rules */
 .plan h2{font-family:var(--serif);font-weight:500;font-size:var(--t-h2);line-height:1.04;letter-spacing:-.018em;max-width:16ch;margin-bottom:var(--sec-in)}
@@ -220,6 +234,21 @@ section{padding:var(--sec) 0}
 @media (max-width:860px){.road .grid{grid-template-columns:1fr}.road .head{position:static}.ledger li{grid-template-columns:1fr;gap:8px;padding:24px 0}.ledger .when{padding-top:0}}
 
 /* faq: accordion */
+.built{border-top:1px solid var(--ink);padding:var(--sec-in) 0}
+.built .top{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(48px,8vw,128px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.built h2{font-family:var(--serif);font-weight:500;font-size:var(--t-h2s);line-height:1.05;letter-spacing:-.018em;max-width:13ch}
+.built .intro{font-size:18px;line-height:1.6;color:var(--ink-2);max-width:46ch}
+.shelf{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(40px,6vw,96px)}
+.bin{border-top:1px solid var(--ink);padding:20px 0 44px}
+.bin h3{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-lab);margin-bottom:6px}
+.bin ul{list-style:none}
+.bin li{position:relative;padding:13px 0 13px 24px;font-size:16px;line-height:1.55;color:var(--ink-2)}
+.bin li + li{border-top:1px solid var(--rule)}
+.bin li::before{content:"";position:absolute;left:0;top:25px;width:12px;height:2px;background:var(--pop)}
+.bin li b{color:var(--ink);font-weight:600}
+.built .more{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px 32px;margin-top:8px;padding-top:32px;border-top:1px solid var(--ink)}
+.built .more p{font-family:var(--serif);font-style:italic;font-size:clamp(23px,2.2vw,28px);line-height:1.25;letter-spacing:-.005em;color:var(--ink)}
+@media (max-width:860px){.built .top{grid-template-columns:1fr;gap:20px}.shelf{grid-template-columns:1fr}.bin{padding-bottom:32px}}
 .faq{border-top:1px solid var(--rule)}
 .faq .col{max-width:860px;margin:0 auto}
 .faq h2{font-family:var(--serif);font-weight:500;font-size:var(--t-h2s);line-height:1.05;letter-spacing:-.018em;margin-bottom:48px}
@@ -265,6 +294,7 @@ footer a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:
     <ul>
       <li class="hide-sm"><a href="#story">Story</a></li>
       <li class="hide-sm"><a href="#how">How it goes</a></li>
+      <li class="hide-sm"><a href="#built">What I've built</a></li>
       <li><a class="btn sm" href="https://gdaimate.com/book?utm_source=asgardbishop&utm_medium=referral&utm_content=nav">Book a 20-min call</a></li>
     </ul>
   </div>
@@ -281,14 +311,14 @@ footer a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:
     </div>
   </div>
   <figure class="hero-photo rv" style="--i:1">
-    <div class="frame"><img src="photo.jpg" alt="Asgard Bishop in a black denim jacket, smiling, against a dark studio wall" width="724" height="1086" fetchpriority="high"></div>
+    <div class="frame"><img src="photo.jpg" alt="Asgard Bishop in a cream linen shirt, smiling, hand resting at his chin, against a pale studio wall" width="1200" height="1799" fetchpriority="high"></div>
     <figcaption><span>Asgard Bishop</span><span>Brisbane and Noosa, QLD</span></figcaption>
   </figure>
 </header>
 
 <div class="proof" aria-label="Track record">
   <div class="wrap">
-    <div class="stat rv"><b>$7K<i>to</i>$2.2M</b><span>weekly takings to yearly revenue, the Straddie cafe I ran</span></div>
+    <div class="stat rv"><b>$7K<i>to</i>$2.2M</b><span>a week to a year. A Straddie cafe losing money, rebuilt as a Mexican restaurant</span></div>
     <div class="stat rv" style="--i:1"><b>1,000+</b><span>documents processed with AI across the portfolio</span></div>
     <div class="stat rv" style="--i:2"><b>14 days</b><span>from the first call to your first build running</span></div>
     <div class="stat rv" style="--i:3"><b>5</b><span>happy business owners so far, and counting</span></div>
@@ -318,29 +348,30 @@ footer a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:
     <p class="kicker rv">Story</p>
     <div class="story">
       <h2 class="rv">I've been the one with a plate in each hand.</h2>
-      <p class="rv">I walked into a cafe on Straddie as a worker. A year and a half later I was running it, and it had gone from <strong>$7K a week to $2.2M a year</strong>, five staff to thirty-five.</p>
-      <p class="rv">The first stretch was seventy-hour weeks on the floor, chasing my tail like everyone else. What turned it around was the unglamorous stuff. Tighter systems, and properly backing the people running them.</p>
-      <p class="rv">When AI hit the mainstream in 2022 all I could see was hours. The nights owners lose to admin when they should be home. So I taught myself to build it, two years of sixteen-hour days and no degree. Everything I'd put in your business runs my own days first.</p>
+      <p class="rv">In September 2022 I moved over to Straddie and started working at a cafe that was losing money. Seven grand a week, on a good week. Then the whole crew quit, right as I got there.</p>
+      <p class="rv">The owner asked what we do now. There was a liquor licence sitting there doing nothing, and I knew how to make a margarita, so I pitched a Mexican restaurant. We found a chef and rebuilt it from scratch. When I left in March 2024 it had done <strong>$2.2M in the previous twelve months</strong>, six times what the cafe was turning over, and it's still running above that today.</p>
+      <p class="rv">Hospo is bloody hard, the messiest industry going with the thinnest margins. I wouldn't recommend owning one to anyone, ha.</p>
+      <p class="rv">Seventy-hour weeks got it open. Then I got obsessed with the boring stuff, tighter systems and properly backing the people running them. I'd watch how each person actually did their job and build the system around that. Most of the time the fix was putting a bit more weight behind what was already working.</p>
+      <p class="rv">When AI went mainstream in 2022 I saw a gaping hole. Hours and money going into systems that were already old the day AI landed, and the nights owners and their staff lose to admin when they should be home. So I taught myself to use it, then to build it. Two years of sixteen-hour days and no degree, because I couldn't leave it alone.</p>
+      <p class="rv">All those years as a generalist turned out to be my edge. I've poured beers, ripped out kitchens, built gardens and run a restaurant with thirty-five staff, so I know how a business runs from the floor up. The systems I learned there and AI work like a lever and a fulcrum, and depending on the job either one can play either part. Set them up right and the boring work and the bottlenecks start shifting on their own, so more cash comes through the door. And anything I'd put in your business, I've run in mine first.</p>
     </div>
-    <div class="quotes">
-      <figure class="q rv">
-        <blockquote>&ldquo;He helped me reprocess more than 1,000 invoices with AI&hellip; Before, I was overwhelmed. He can always find a way to lighten the work and the mental load.&rdquo;</blockquote>
-        <figcaption><b>Lory</b>Invoice and expense processing</figcaption>
-      </figure>
-      <figure class="q rv">
-        <blockquote>&ldquo;Since we launched I've had numerous enquiries and client leads, purely from my website traffic.&rdquo;</blockquote>
-        <figcaption><b>Amie E.</b>DeepClean, cleaning business, 5.0 on Google</figcaption>
-      </figure>
-    </div>
+    <figure class="crew rv" style="--i:1">
+      <div class="shot">
+        <img src="straddie-crew.jpg" alt="The Straddie cafe crew celebrating under fairy lights at night, Asgard on the far left, mid-song" width="1600" height="1067" loading="lazy" decoding="async">
+        <svg class="arrow" viewBox="0 0 100 66.7" preserveAspectRatio="none" aria-hidden="true"><path d="M23.5 9.2C22.6 14.6 19.4 18.4 14.2 20.6"/><path d="M14.2 20.6l3.3-2.9M14.2 20.6l3.9.6"/></svg>
+        <span class="me" aria-hidden="true">That's me</span>
+      </div>
+      <figcaption><span>The Straddie cafe crew</span><span>October 2023</span></figcaption>
+    </figure>
   </div>
 </section>
 
 <section class="plan" id="how">
   <div class="wrap">
     <p class="kicker rv">How it goes</p>
-    <h2 class="rv">Start with one thing that's eating your week.</h2>
+    <h2 class="rv">Start with the one thing eating your week, or your pocket.</h2>
     <div class="steps">
-      <div class="step rv"><span class="n">01</span><h3>The call</h3><p class="t">20 minutes</p><p>Tell me what's eating your week. I'll tell you straight if I can fix it.</p></div>
+      <div class="step rv"><span class="n">01</span><h3>The call</h3><p class="t">20 minutes</p><p>Tell me where it's burning a hole. I'll tell you straight if I can fix it.</p></div>
       <div class="step rv" style="--i:1"><span class="n">02</span><h3>The first build</h3><p class="t">14 days</p><p>One workflow, built inside your business, running on your real jobs. You watch it work before we touch anything else.</p></div>
       <div class="step rv" style="--i:2"><span class="n">03</span><h3>The walkthrough</h3><p class="t">30 minutes</p><p>I show you what it caught that week. You decide what's next.</p></div>
       <div class="step rv" style="--i:3"><span class="n">04</span><h3>It compounds</h3><p class="t">every week after</p><p>Every job you run teaches it more about how you do things. Most owners are picking workflow number two by now.</p></div>
@@ -352,7 +383,21 @@ footer a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:
         <li class="rv" style="--i:1"><b>Month to month.</b><span>It earns its keep or you walk.</span></li>
         <li class="rv" style="--i:2"><b>Your data stays yours.</b><span>In your accounts, under your logins, the whole time.</span></li>
         <li class="rv" style="--i:3"><b>Plain English, always.</b><span>Explaining the tech is my job.</span></li>
+        <li class="rv" style="--i:4"><b>Locked down properly.</b><span>Industry-standard security on everything I build. Encryption, hashed passwords, secure token logins and SSH-only server access.</span></li>
+        <li class="rv" style="--i:5"><b>Nothing you don't need.</b><span>Simple builds, so there's less to break and less to pay for.</span></li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<section class="said" aria-label="Client reviews">
+  <div class="wrap">
+    <p class="kicker rv">In their words</p>
+    <h2 class="rv">What the people I've built for say.</h2>
+    <div class="said-row rv">
+      <div class="said-track"><figure class="said-card"><blockquote>&ldquo;It feels like my business has tripled in capacity, let alone my own mental capacity. I can finally focus on the bigger-picture stuff instead of being buried in it.&rdquo;</blockquote><figcaption><b>Matias Allendes</b>Tree lopping</figcaption></figure><figure class="said-card"><blockquote>&ldquo;He helped me reprocess more than 1,000 invoices to pull the data for our profit report. Before, I was overwhelmed. He always finds a way to lighten the work and the mental load.&rdquo;</blockquote><figcaption><b>Lory Caccamo</b>Invoice and expense processing</figcaption></figure><figure class="said-card"><blockquote>&ldquo;He created the perfect website for my cleaning business. Since we launched I&rsquo;ve had numerous enquiries and client leads purely from website traffic. Highly recommend.&rdquo;</blockquote><figcaption><b>Amie Eckhardt</b>DeepClean, cleaning business</figcaption></figure><figure class="said-card"><blockquote>&ldquo;From something less than average, he took it to the next level. It looks like a proper professional website now. He can take whatever&rsquo;s in your head and make it real.&rdquo;</blockquote><figcaption><b>Franco Amoretti</b>Car dealership</figcaption></figure></div>
+      <div class="said-track" aria-hidden="true"><figure class="said-card"><blockquote>&ldquo;It feels like my business has tripled in capacity, let alone my own mental capacity. I can finally focus on the bigger-picture stuff instead of being buried in it.&rdquo;</blockquote><figcaption><b>Matias Allendes</b>Tree lopping</figcaption></figure><figure class="said-card"><blockquote>&ldquo;He helped me reprocess more than 1,000 invoices to pull the data for our profit report. Before, I was overwhelmed. He always finds a way to lighten the work and the mental load.&rdquo;</blockquote><figcaption><b>Lory Caccamo</b>Invoice and expense processing</figcaption></figure><figure class="said-card"><blockquote>&ldquo;He created the perfect website for my cleaning business. Since we launched I&rsquo;ve had numerous enquiries and client leads purely from website traffic. Highly recommend.&rdquo;</blockquote><figcaption><b>Amie Eckhardt</b>DeepClean, cleaning business</figcaption></figure><figure class="said-card"><blockquote>&ldquo;From something less than average, he took it to the next level. It looks like a proper professional website now. He can take whatever&rsquo;s in your head and make it real.&rdquo;</blockquote><figcaption><b>Franco Amoretti</b>Car dealership</figcaption></figure></div>
+      <div class="said-track" aria-hidden="true"><figure class="said-card"><blockquote>&ldquo;It feels like my business has tripled in capacity, let alone my own mental capacity. I can finally focus on the bigger-picture stuff instead of being buried in it.&rdquo;</blockquote><figcaption><b>Matias Allendes</b>Tree lopping</figcaption></figure><figure class="said-card"><blockquote>&ldquo;He helped me reprocess more than 1,000 invoices to pull the data for our profit report. Before, I was overwhelmed. He always finds a way to lighten the work and the mental load.&rdquo;</blockquote><figcaption><b>Lory Caccamo</b>Invoice and expense processing</figcaption></figure><figure class="said-card"><blockquote>&ldquo;He created the perfect website for my cleaning business. Since we launched I&rsquo;ve had numerous enquiries and client leads purely from website traffic. Highly recommend.&rdquo;</blockquote><figcaption><b>Amie Eckhardt</b>DeepClean, cleaning business</figcaption></figure><figure class="said-card"><blockquote>&ldquo;From something less than average, he took it to the next level. It looks like a proper professional website now. He can take whatever&rsquo;s in your head and make it real.&rdquo;</blockquote><figcaption><b>Franco Amoretti</b>Car dealership</figcaption></figure></div>
     </div>
   </div>
 </section>
@@ -376,11 +421,32 @@ footer a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:
     <div class="head"><p class="kicker rv">The long way round</p><h2 class="rv">Self-taught, and I learned most of it on the floor.</h2></div>
     <ol class="ledger">
       <li class="rv"><span class="when">Age 15</span><div><b>My own market stall</b><p>Selling cordials. First taste of talking to customers all day.</p></div></li>
-      <li class="rv"><span class="when">The trades years</span><div><b>Hospo, demo, landscaping</b><p>Bartending, bathroom and kitchen demolition on the Sunshine Coast, garden builds in Noosa, wedding marquees on Straddie.</p></div></li>
-      <li class="rv"><span class="when">Straddie</span><div><b>The cafe</b><p>Worker to manager. $7K a week to $2.2M a year, five staff to thirty-five.</p></div></li>
-      <li class="rv"><span class="when">2022 on</span><div><b>Taught myself AI</b><p>Agentic engineering first, then building for real businesses.</p></div></li>
+      <li class="rv"><span class="when">The trades years</span><div><b>Hospo, demo, landscaping</b><p>Said yes to anything that paid and taught me something. Bartending, ripping out bathrooms and kitchens on the Sunshine Coast, garden builds in Noosa, wedding marquees on Straddie. That's where I found out what I'm good at, and where the work ethic got built.</p></div></li>
+      <li class="rv"><span class="when">2022 to 2024</span><div><b>The restaurant</b><p>Started on the floor at a cafe losing money on Straddie, pitched the Mexican restaurant, then ran it. $7K a week to $2.2M a year, with thirty-five staff by the end.</p></div></li>
+      <li class="rv"><span class="when">2022 on</span><div><b>Taught myself AI</b><p>Built it for myself first, then for real businesses.</p></div></li>
+      <li class="rv"><span class="when">2024</span><div><b>Sales</b><p>A year on the phones in high-ticket sales. Taught me to shut up and listen for what someone actually needs.</p></div></li>
+      <li class="rv"><span class="when">2025</span><div><b>AI Systems Engineer, RiteWai</b><p>A Canadian AI company. Built a hospital phone agent that takes resource orders, and helped build the rest of their AI team.</p></div></li>
       <li class="rv"><span class="when">Now</span><div><b>G'dai Mate</b><p>AI done good, for the people who keep this country running.</p></div></li>
     </ol>
+  </div>
+</section>
+
+<section class="built" id="built">
+  <div class="wrap">
+    <div class="top">
+      <div><p class="kicker rv">The workshop</p><h2 class="rv">Things I've built.</h2></div>
+      <p class="intro rv">A working list. Most of it runs every day, for clients or for me, and everything gets proven on my own business before it goes near yours.</p>
+    </div>
+    <div class="shelf">
+      <div class="bin rv"><h3><span>G'dai Mate</span><span>07</span></h3><ul><li><b>Emma, an AI receptionist.</b> Answers calls, books meetings, puts urgent callers through to me and texts back anyone I miss.</li><li><b>Voice-to-quote for tradies.</b> Walk the site talking, and a branded PDF quote comes out.</li><li><b>A Google review survey.</b> Customers talk for two minutes and AI shapes it into a review in their own words, ready to post.</li><li><b>Website chatbots</b> that answer questions and book calls.</li><li><b>A content engine</b> that writes posts and edits video. I swipe through it Tinder-style to approve or bin, and it posts to my socials twice a day.</li><li><b>A lead machine.</b> 49 local pages built to show up on Google, a quiz that turns visitors into enquiries, a call list every morning and a personal audit for every prospect.</li><li><b>A grant engine</b> that matches tradies to live government grants.</li></ul></div>
+      <div class="bin rv"><h3><span>For clients</span><span>06</span></h3><ul><li><b>Websites</b> for Bespoke Pools &amp; Landscapes, DeepClean, Brisbane Aircon and Blue Jay Carpentry. DeepClean moved up 18 spots on Google, on average.</li><li><b>Invoice processing.</b> AI that reprocessed 1,000+ invoices into an expense and profit report.</li><li><b>Buildable.</b> Type in an address and get a site report on easements, sewer lines, depths and buildable area, so pool builders price the ground right.</li><li><b>An SMS booking bot</b> for a car detailing business.</li><li><b>OVINTO,</b> a used-car auction marketplace for a dealer in Chile.</li><li><b>A hospital phone agent</b> that takes resource orders, built at RiteWai.</li></ul></div>
+      <div class="bin rv"><h3><span>My own AI stack</span><span>05</span></h3><ul><li><b>Hermes, my AI partner.</b> Runs my calendar and inbox over WhatsApp and briefs me every morning, with 20 specialist agents it hands work to.</li><li><b>A voice assistant</b> that runs locally on my Mac.</li><li><b>A dashboard</b> where calls, texts, leads and the content queue all land in one place.</li><li><b>A library of about 300 skills,</b> the instruction sets that make the AI do each job properly.</li><li><b>A harvester</b> that banks my own work every night. That pile gets fed back to the big AI models every time they work for me, so they already answer more like I would.</li></ul></div>
+      <div class="bin rv"><h3><span>On the side</span><span>07</span></h3><ul><li><b>h&uuml;m,</b> a voice-first social app I've been building for a year. Friends are testing it now.</li><li><b>Wearable Opinions,</b> a T-shirt store of funny Aussie slogans. Built and running ads inside a week.</li><li><b>A sourcing app</b> for my partner's jewellery brand.</li><li><b>Venus,</b> my partner's own AI agent.</li><li><b>A deal scout</b> that scores businesses for sale every morning.</li><li><b>Tap-to-save business cards</b> that live in Apple Wallet.</li><li><b>Branded industry reports</b> for a Queensland growers' body.</li></ul></div>
+    </div>
+    <div class="more rv">
+      <p>See something you'd want in your business? Bring it to the call.</p>
+      <a class="btn" href="https://gdaimate.com/book?utm_source=asgardbishop&amp;utm_medium=referral&amp;utm_content=built">Book a 20-min call <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+    </div>
   </div>
 </section>
 
